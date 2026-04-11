@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>English Tests — Learn English</title>
+    <meta name="description" content="AI-generated English tests. Practice grammar, vocabulary, and reading comprehension with instant AI feedback."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <style>
+        /* ═══ TEST PAGE ═══ */
+        .test-page {
+            padding: 100px 24px 120px;
+            min-height: 100vh;
+            background: var(--gray-100);
+        }
+
+        .test-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Setup screen */
+        .test-setup {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .test-setup-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            background: var(--gradient-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+        }
+
+        .test-setup-icon .material-symbols-outlined {
+            font-size: 40px;
+            color: var(--white);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .test-setup h1 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .test-setup > p {
+            color: var(--gray-400);
+            font-size: 17px;
+            margin-bottom: 48px;
+        }
+
+        .test-config {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+
+        .config-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gray-400);
+            margin-bottom: 8px;
+        }
+
+        .config-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            background: var(--white);
+            cursor: pointer;
+            color: var(--black);
+        }
+
+        .start-test-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 48px;
+            border-radius: var(--radius-full);
+            border: none;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .start-test-btn:hover {
+            background: var(--blue-hover);
+            box-shadow: 0 4px 24px rgba(0,113,227,0.3);
+        }
+
+        .start-test-btn:disabled {
+            background: var(--gray-200);
+            color: var(--gray-400);
+            cursor: default;
+            box-shadow: none;
+        }
+
+        /* Loading */
+        .test-loading {
+            text-align: center;
+            padding: 100px 40px;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--gray-200);
+            border-top-color: var(--blue);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 24px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .test-loading p {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .test-loading .sub {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-top: 8px;
+        }
+
+        /* Question card */
+        .question-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .question-progress {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .q-counter {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .q-timer {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-400);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .q-timer .material-symbols-outlined { font-size: 18px; }
+
+        .q-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--gray-100);
+            border-radius: 3px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .q-progress-fill {
+            height: 100%;
+            background: var(--gradient-text);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        .question-text {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.4;
+            margin-bottom: 32px;
+            color: var(--black);
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .option-button {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 24px;
+            border-radius: var(--radius-md);
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            color: var(--black);
+        }
+
+        .option-button:hover:not(.locked) {
+            border-color: var(--blue);
+            background: rgba(0,113,227,0.03);
+        }
+
+        .option-button.selected {
+            border-color: var(--blue);
+            background: rgba(0,113,227,0.06);
+        }
+
+        .option-button.correct {
+            border-color: #2e7d32;
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .option-button.wrong {
+            border-color: #c62828;
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .option-button.correct .option-letter { background: #c8e6c9; }
+        .option-button.wrong .option-letter { background: #f8bbd0; }
+
+        .explanation-box {
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            background: var(--gray-100);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--gray-600);
+            margin-bottom: 28px;
+            display: none;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .explanation-box strong {
+            color: var(--black);
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 18px;
+            border-radius: var(--radius-full);
+            border: none;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            display: none;
+        }
+
+        .next-btn:hover { background: var(--blue-hover); }
+
+        /* Results screen */
+        .results-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 56px 48px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .results-score-ring {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            position: relative;
+        }
+
+        .results-score-ring svg {
+            position: absolute;
+            inset: 0;
+            transform: rotate(-90deg);
+        }
+
+        .results-score-ring .score-text {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            z-index: 2;
+        }
+
+        .results-score-ring .score-pct {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-400);
+        }
+
+        .results-label {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .results-sublabel {
+            color: var(--gray-400);
+            font-size: 16px;
+            margin-bottom: 36px;
+        }
+
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .result-stat {
+            background: var(--gray-100);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .result-stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .result-stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .results-actions a, .results-actions button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-retry {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .btn-retry:hover { background: var(--blue-hover); }
+
+        .btn-dash {
+            background: var(--gray-100);
+            color: var(--black);
+        }
+
+        .btn-dash:hover { background: var(--gray-200); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .test-page { padding: 80px 16px 100px; }
+            .question-card { padding: 32px 24px; }
+            .results-card { padding: 40px 24px; }
+            .test-config { grid-template-columns: 1fr; }
+            .results-stats { grid-template-columns: 1fr; }
+            .results-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+            <span class="logo-text">Learn English</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Learn</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="learn-ai.html">AI Tutor</a></li>
+            <li><a class="active" href="test.html" aria-current="page">Tests</a></li>
+            <li><a href="dashboard.html">Progress</a></li>
+            <li><a class="nav-cta" href="onboarding.html">Get Started</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="test-page">
+    <div class="test-inner" id="test-container">
+
+        <!-- ═══ SETUP SCREEN ═══ -->
+        <div id="setup-screen" class="test-setup">
+            <div class="test-setup-icon">
+                <span class="material-symbols-outlined">quiz</span>
+            </div>
+            <h1>Test Your English</h1>
+            <p>AI-generated questions tailored to your level. Let's see what you know!</p>
+
+            <div class="test-config">
+                <div class="config-group">
+                    <label>Category</label>
+                    <select id="test-category">
+                        <option value="Grammar">Grammar</option>
+                        <option value="Vocabulary">Vocabulary</option>
+                        <option value="Reading Comprehension">Reading</option>
+                        <option value="Sentence Correction">Correction</option>
+                    </select>
+                </div>
+                <div class="config-group">
+                    <label>Difficulty</label>
+                    <select id="test-difficulty">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate" selected>Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="start-test-btn" id="start-btn" onclick="startTest()">
+                <span class="material-symbols-outlined" style="font-size:22px;">play_arrow</span>
+                Start Test
+            </button>
+        </div>
+
+        <!-- ═══ LOADING SCREEN ═══ -->
+        <div id="loading-screen" class="test-loading" style="display:none;">
+            <div class="spinner"></div>
+            <p>Generating your test...</p>
+            <p class="sub">Our AI is crafting personalized questions</p>
+        </div>
+
+        <!-- ═══ QUESTION SCREEN ═══ -->
+        <div id="question-screen" style="display:none;"></div>
+
+        <!-- ═══ RESULTS SCREEN ═══ -->
+        <div id="results-screen" style="display:none;"></div>
+
+    </div>
+</div>
+
+<!-- ═══ MOBILE NAV ═══ -->
+<nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html">
+        <span class="material-symbols-outlined">school</span>
+        <span>Learn</span>
+    </a>
+    <a href="learn-ai.html">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <span>AI Tutor</span>
+    </a>
+    <a class="active" href="test.html" aria-current="page">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">quiz</span>
+        <span>Tests</span>
+    </a>
+    <a href="dashboard.html">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Progress</span>
+    </a>
+</nav>
+
+<script src="js/app-data.js"></script>
+<script src="js/ai-service.js"></script>
+<script>
+    let questions = [];
+    let currentQ = 0;
+    let score = 0;
+    let testStartTime = 0;
+    let qStartTime = 0;
+    let timerInterval = null;
+    let answered = false;
+
+    async function startTest() {
+        const category = document.getElementById('test-category').value;
+        const difficulty = document.getElementById('test-difficulty').value;
+
+        document.getElementById('setup-screen').style.display = 'none';
+        document.getElementById('loading-screen').style.display = 'block';
+
+        try {
+            questions = await AIService.generateTest(category, difficulty, 10);
+            currentQ = 0;
+            score = 0;
+            testStartTime = Date.now();
+            answered = false;
+
+            document.getElementById('loading-screen').style.display = 'none';
+            showQuestion();
+        } catch (err) {
+            document.getElementById('loading-screen').innerHTML = `
+                <div style="color:#c62828;font-size:18px;font-weight:600;margin-bottom:12px;">Failed to generate test</div>
+                <p style="color:var(--gray-400)">${err.message}</p>
+                <button class="start-test-btn" style="margin-top:24px;" onclick="location.reload()">Try Again</button>`;
+        }
+    }
+
+    function showQuestion() {
+        answered = false;
+        const q = questions[currentQ];
+        const progress = ((currentQ) / questions.length) * 100;
+
+        qStartTime = Date.now();
+        let elapsed = 0;
+
+        clearInterval(timerInterval);
+
+        const html = `
+            <div class="question-card">
+                <div class="question-progress">
+                    <span class="q-counter">Question ${currentQ + 1} of ${questions.length}</span>
+                    <span class="q-timer" id="q-timer">
+                        <span class="material-symbols-outlined">timer</span>
+                        <span id="timer-text">0:00</span>
+                    </span>
+                </div>
+                <div class="q-progress-bar">
+                    <div class="q-progress-fill" style="width:${progress}%"></div>
+                </div>
+                <div class="question-text">${q.question}</div>
+                <div class="options-list" id="options-list">
+                    ${q.options.map((opt, i) => `
+                        <button class="option-button" data-index="${i}" onclick="selectAnswer(this, ${i})">
+                            <span class="option-letter">${String.fromCharCode(65 + i)}</span>
+                            <span>${opt}</span>
+                        </button>`).join('')}
+                </div>
+                <div class="explanation-box" id="explanation-box"></div>
+                <button class="next-btn" id="next-btn" onclick="nextQuestion()">
+                    ${currentQ < questions.length - 1 ? 'Next Question →' : 'See Results →'}
+                </button>
+            </div>`;
+
+        document.getElementById('question-screen').innerHTML = html;
+        document.getElementById('question-screen').style.display = 'block';
+
+        // Start timer
+        timerInterval = setInterval(() => {
+            elapsed = Math.floor((Date.now() - qStartTime) / 1000);
+            const mins = Math.floor(elapsed / 60);
+            const secs = elapsed % 60;
+            const timerEl = document.getElementById('timer-text');
+            if (timerEl) timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        }, 1000);
+    }
+
+    function selectAnswer(btn, index) {
+        if (answered) return;
+        answered = true;
+        clearInterval(timerInterval);
+
+        const q = questions[currentQ];
+        const isCorrect = index === q.correctIndex;
+        if (isCorrect) score++;
+
+        // Lock all buttons
+        document.querySelectorAll('.option-button').forEach(b => {
+            b.classList.add('locked');
+            const idx = parseInt(b.dataset.index);
+            if (idx === q.correctIndex) b.classList.add('correct');
+            if (idx === index && !isCorrect) b.classList.add('wrong');
+        });
+
+        // Show explanation
+        const expEl = document.getElementById('explanation-box');
+        expEl.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</strong> ${q.explanation}`;
+        expEl.style.display = 'block';
+
+        // Show next button
+        document.getElementById('next-btn').style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentQ++;
+        if (currentQ < questions.length) {
+            showQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        clearInterval(timerInterval);
+        document.getElementById('question-screen').style.display = 'none';
+
+        const category = document.getElementById('test-category').value;
+        const difficulty = document.getElementById('test-difficulty').value;
+        const timeTaken = Math.round((Date.now() - testStartTime) / 1000);
+        const pct = Math.round((score / questions.length) * 100);
+        const mins = Math.floor(timeTaken / 60);
+        const secs = timeTaken % 60;
+
+        // Save result
+        AppData.saveTestResult({
+            category,
+            difficulty,
+            score,
+            totalQuestions: questions.length,
+            timeTaken
+        });
+
+        // Color based on score
+        let color = pct >= 80 ? '#2e7d32' : pct >= 60 ? '#f57f17' : '#c62828';
+        let label = pct >= 80 ? 'Excellent! 🎉' : pct >= 60 ? 'Good effort! 💪' : 'Keep practicing! 📚';
+
+        // SVG ring
+        const circumference = 2 * Math.PI * 68;
+        const offset = circumference - (pct / 100) * circumference;
+
+        document.getElementById('results-screen').innerHTML = `
+            <div class="results-card">
+                <div class="results-score-ring">
+                    <svg width="160" height="160">
+                        <circle cx="80" cy="80" r="68" fill="none" stroke="var(--gray-100)" stroke-width="8"/>
+                        <circle cx="80" cy="80" r="68" fill="none" stroke="${color}" stroke-width="8"
+                            stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+                            stroke-linecap="round" style="transition: stroke-dashoffset 1s ease;"/>
+                    </svg>
+                    <div>
+                        <div class="score-text" style="color:${color}">${pct}%</div>
+                    </div>
+                </div>
+                <div class="results-label">${label}</div>
+                <div class="results-sublabel">${score}/${questions.length} correct · ${category} · ${difficulty}</div>
+                <div class="results-stats">
+                    <div class="result-stat">
+                        <div class="result-stat-value">${score}/${questions.length}</div>
+                        <div class="result-stat-label">Correct</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value">${mins}:${secs.toString().padStart(2, '0')}</div>
+                        <div class="result-stat-label">Time Taken</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value">+${pct >= 80 ? 50 : pct >= 60 ? 30 : 15}</div>
+                        <div class="result-stat-label">XP Earned</div>
+                    </div>
+                </div>
+                <div class="results-actions">
+                    <button class="btn-retry" onclick="resetTest()">
+                        <span class="material-symbols-outlined" style="font-size:20px;">replay</span>
+                        Take Another Test
+                    </button>
+                    <a class="btn-dash" href="dashboard.html">
+                        <span class="material-symbols-outlined" style="font-size:20px;">analytics</span>
+                        View Progress
+                    </a>
+                </div>
+            </div>`;
+        document.getElementById('results-screen').style.display = 'block';
+    }
+
+    function resetTest() {
+        document.getElementById('results-screen').style.display = 'none';
+        document.getElementById('setup-screen').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

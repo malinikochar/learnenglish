@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethereal Academy - Level Test</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#006D77",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#83C5BE",
+                        "on-primary-container": "#002022",
+                        "secondary": "#EDF6F9",
+                        "on-secondary": "#006D77",
+                        "secondary-container": "#E29578",
+                        "on-secondary-container": "#2D1600",
+                        "tertiary": "#FFDDD2",
+                        "on-tertiary": "#4D1F10",
+                        "background": "#F8FAFB",
+                        "on-background": "#1A1C1E",
+                        "surface": "#F8FAFB",
+                        "on-surface": "#1A1C1E",
+                        "surface-variant": "#DAE4E5",
+                        "on-surface-variant": "#3F494A",
+                        "outline": "#6F797A",
+                        "surface-container-lowest": "#FFFFFF",
+                        "surface-container-low": "#F1F4F5",
+                        "surface-container": "#EBF0F1",
+                        "surface-container-high": "#E5EBEC",
+                        "surface-container-highest": "#DFE6E7",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "2rem",
+                        "lg": "2.5rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center selection:bg-primary-container selection:text-on-primary-container">
+<!-- Onboarding Navigation -->
+<header class="w-full max-w-4xl px-6 py-12 flex flex-col items-center gap-8">
+<div class="w-full flex justify-between items-center mb-4">
+<span class="text-primary font-extrabold text-xl tracking-tight">Ethereal Academy</span>
+<div class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-low rounded-full">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Step 1 of 5</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden p-0.5">
+<div class="h-full w-1/5 bg-gradient-to-r from-primary to-primary-container rounded-full"></div>
+</div>
+</header>
+<main class="w-full max-w-5xl px-6 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Column: Illustration & Guide -->
+<div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left gap-8">
+<div class="relative w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-primary-container/30 to-tertiary/30 rounded-full overflow-hidden shadow-2xl shadow-primary/5">
+<img class="w-full h-full object-contain p-8" data-alt="a friendly minimalist 3d character with a warm smile, wearing a modern academic sweater, floating in a soft white void with teal accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCONZjlV4NbnYnFsKkmmOIO_S_k1HMxF6HrQII5lkE6AzgUEz0jGPlVQQFHqh3CJZAOfHRxAEzkpzL2aSWKMG-qa6m988JcgVouZEZhZy-HxTiFfOdiUQCQmE72xaok7SpWeSU4N4HgrVFBn5iHyD_AJeIJop1fxsPxfxtpL3bvXMoFkAjoj-sDVptR2rbbnkbbgU2SO0tnzgER0YSGm5rKV1GBKi43D3Lk0g_ZIQ4mPYyLKVTMWeYlWP1-gixGCychG8hte6r7ZpnE"/>
+<!-- Decorative glass bubble -->
+<div class="absolute bottom-4 right-4 w-20 h-20 glass-panel rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+<div class="space-y-3">
+<h2 class="text-4xl font-extrabold text-on-surface leading-tight tracking-tight">Let's find your starting point.</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">Your path at Ethereal Academy is tailored to your unique journey. Where are you now?</p>
+</div>
+</div>
+<!-- Right Column: Interactive Question & Options -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<div class="space-y-4">
+<h1 class="text-2xl font-bold text-on-surface px-2">How would you describe your current English proficiency?</h1>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Option Card 1: Active/Selected State -->
+<button class="group relative flex flex-col p-8 text-left rounded-full bg-surface-container-lowest ring-2 ring-primary shadow-xl shadow-primary/10 transition-all duration-300">
+<div class="mb-4 flex justify-between items-start">
+<div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="baby_changing_station">baby_changing_station</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" data-icon="check" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<span class="text-lg font-extrabold text-on-surface mb-1">Just starting</span>
+<p class="text-sm text-on-surface-variant leading-relaxed">I'm a complete beginner ready to learn the fundamentals.</p>
+</button>
+<!-- Option Card 2 -->
+<button class="group relative flex flex-col p-8 text-left rounded-full bg-surface-container-low hover:bg-surface-container-lowest transition-all duration-300 border border-transparent hover:shadow-2xl hover:shadow-primary/10">
+<div class="mb-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/5">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl" data-icon="menu_book">menu_book</span>
+</div>
+</div>
+<span class="text-lg font-extrabold text-on-surface mb-1">Know some basics</span>
+<p class="text-sm text-on-surface-variant leading-relaxed">I can recognize common words and simple phrases.</p>
+</button>
+<!-- Option Card 3 -->
+<button class="group relative flex flex-col p-8 text-left rounded-full bg-surface-container-low hover:bg-surface-container-lowest transition-all duration-300 border border-transparent hover:shadow-2xl hover:shadow-primary/10">
+<div class="mb-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/5">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl" data-icon="forum">forum</span>
+</div>
+</div>
+<span class="text-lg font-extrabold text-on-surface mb-1">Can hold a conversation</span>
+<p class="text-sm text-on-surface-variant leading-relaxed">I can communicate in daily situations with some effort.</p>
+</button>
+<!-- Option Card 4 -->
+<button class="group relative flex flex-col p-8 text-left rounded-full bg-surface-container-low hover:bg-surface-container-lowest transition-all duration-300 border border-transparent hover:shadow-2xl hover:shadow-primary/10">
+<div class="mb-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/5">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-2xl" data-icon="workspace_premium">workspace_premium</span>
+</div>
+</div>
+<span class="text-lg font-extrabold text-on-surface mb-1">Looking for fluency</span>
+<p class="text-sm text-on-surface-variant leading-relaxed">I want to master nuances for career or advanced academic use.</p>
+</button>
+</div>
+<div class="flex items-center justify-between mt-10 pt-10 border-t border-surface-container-high">
+<button class="flex items-center gap-2 text-on-surface-variant font-bold px-8 py-4 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span>Back</span>
+</button>
+<button class="bg-primary text-on-primary font-extrabold text-lg px-14 py-4 rounded-full shadow-2xl shadow-primary/30 hover:shadow-primary/40 hover:scale-[1.03] active:scale-95 transition-all duration-300 flex items-center gap-3">
+<span>Next</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Floating decorative elements -->
+<div class="fixed bottom-0 right-0 p-12 -z-10 opacity-30 pointer-events-none">
+<div class="w-[30rem] h-[30rem] bg-primary-container/40 rounded-full blur-[140px]"></div>
+</div>
+<div class="fixed top-0 left-0 p-12 -z-10 opacity-30 pointer-events-none">
+<div class="w-[20rem] h-[20rem] bg-tertiary/40 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

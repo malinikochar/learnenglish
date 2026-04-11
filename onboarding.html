@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Get Started — Learn English</title>
+    <meta name="description" content="Find your starting level and begin your personalized English learning journey with Learn English."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <style>
+        /* ═══ ONBOARDING SPECIFIC ═══ */
+        body {
+            background: var(--gray-50);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .onboarding-nav {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px 0;
+        }
+
+        .onboarding-nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .onboarding-logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .onboarding-step {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: var(--gray-100);
+            padding: 6px 18px;
+            border-radius: var(--radius-full);
+        }
+
+        .onboarding-progress {
+            width: 100%;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .onboarding-progress-fill {
+            height: 100%;
+            width: 20%;
+            background: var(--gradient-text);
+            border-radius: var(--radius-full);
+            transition: width 0.6s ease;
+        }
+
+        /* Main */
+        .onboarding-main {
+            flex: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 64px 24px 48px;
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        /* Left column */
+        .onboarding-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 32px;
+        }
+
+        .onboarding-illustration {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--gradient-hero);
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .onboarding-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 24px;
+        }
+
+        .onboarding-illustration .float-icon {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .onboarding-left h2 {
+            font-size: clamp(28px, 3vw, 36px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--black);
+        }
+
+        .onboarding-left p {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            max-width: 340px;
+        }
+
+        /* Right column: Question */
+        .onboarding-right {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .onboarding-question {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .option-card {
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-card:hover {
+            border-color: var(--blue);
+            box-shadow: var(--shadow-md);
+        }
+
+        .option-card.selected {
+            border-color: var(--blue);
+            background: var(--blue-light);
+            box-shadow: 0 4px 24px rgba(0,113,227,0.12);
+        }
+
+        .option-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .option-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .option-card:not(.selected) .option-icon {
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+
+        .option-card.selected .option-icon {
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+
+        .option-card:hover:not(.selected) .option-icon {
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+
+        .option-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .option-card:not(.selected) .option-check {
+            border: 2px solid var(--gray-300);
+        }
+
+        .option-card.selected .option-check {
+            background: var(--blue);
+        }
+
+        .option-card.selected .option-check .material-symbols-outlined {
+            font-size: 16px;
+            color: var(--white);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .option-name {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: -0.01em;
+        }
+
+        .option-desc {
+            font-size: 14px;
+            color: var(--gray-400);
+            line-height: 1.5;
+        }
+
+        /* Navigation buttons */
+        .onboarding-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .onboarding-back {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
+
+        .onboarding-back:hover {
+            background: var(--gray-100);
+            color: var(--black);
+        }
+
+        .onboarding-back .material-symbols-outlined { font-size: 18px; }
+
+        /* Background decoration */
+        .bg-orb {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.3;
+        }
+
+        .bg-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(0,113,227,0.12);
+            bottom: -200px;
+            right: -100px;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(191,90,242,0.08);
+            top: -100px;
+            left: -100px;
+        }
+
+        @media (max-width: 768px) {
+            .onboarding-main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+            .options-grid { grid-template-columns: 1fr; }
+            .onboarding-illustration { width: 200px; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Background decorations -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+
+<!-- ═══ ONBOARDING NAV ═══ -->
+<header class="onboarding-nav">
+    <div class="onboarding-nav-inner">
+        <a class="onboarding-logo" href="index.html">Learn English</a>
+        <span class="onboarding-step">Step 1 of 5</span>
+    </div>
+    <div class="onboarding-progress">
+        <div class="onboarding-progress-fill"></div>
+    </div>
+</header>
+
+<!-- ═══ MAIN ═══ -->
+<main class="onboarding-main">
+    <!-- Left: Illustration -->
+    <div class="onboarding-left fade-in">
+        <div class="onboarding-illustration">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCONZjlV4NbnYnFsKkmmOIO_S_k1HMxF6HrQII5lkE6AzgUEz0jGPlVQQFHqh3CJZAOfHRxAEzkpzL2aSWKMG-qa6m988JcgVouZEZhZy-HxTiFfOdiUQCQmE72xaok7SpWeSU4N4HgrVFBn5iHyD_AJeIJop1fxsPxfxtpL3bvXMoFkAjoj-sDVptR2rbbnkbbgU2SO0tnzgER0YSGm5rKV1GBKi43D3Lk0g_ZIQ4mPYyLKVTMWeYlWP1-gixGCychG8hte6r7ZpnE" alt="Friendly character" loading="lazy" decoding="async"/>
+            <div class="float-icon">
+                <span class="material-symbols-outlined" style="color:var(--blue);font-size:24px;">auto_awesome</span>
+            </div>
+        </div>
+        <div>
+            <h2>Let's find your<br/>starting point.</h2>
+            <p style="margin-top:12px;">Your path at Learn English is tailored to your unique journey. Where are you now?</p>
+        </div>
+    </div>
+
+    <!-- Right: Question & Options -->
+    <div class="onboarding-right fade-in" style="animation-delay:0.15s;">
+        <h1 class="onboarding-question">How would you describe your current English proficiency?</h1>
+
+        <div class="options-grid">
+            <!-- Option 1: Selected -->
+            <button class="option-card selected" aria-pressed="true" onclick="selectOnboardingOption(this)">
+                <div class="option-card-header">
+                    <div class="option-icon">
+                        <span class="material-symbols-outlined" style="font-size:24px;">emoji_people</span>
+                    </div>
+                    <div class="option-check">
+                        <span class="material-symbols-outlined">check</span>
+                    </div>
+                </div>
+                <div class="option-name">Just starting</div>
+                <div class="option-desc">I'm a complete beginner ready to learn the fundamentals.</div>
+            </button>
+
+            <!-- Option 2 -->
+            <button class="option-card" aria-pressed="false" onclick="selectOnboardingOption(this)">
+                <div class="option-card-header">
+                    <div class="option-icon">
+                        <span class="material-symbols-outlined" style="font-size:24px;">menu_book</span>
+                    </div>
+                    <div class="option-check">
+                        <span class="material-symbols-outlined" style="display:none;">check</span>
+                    </div>
+                </div>
+                <div class="option-name">Know some basics</div>
+                <div class="option-desc">I can recognize common words and simple phrases.</div>
+            </button>
+
+            <!-- Option 3 -->
+            <button class="option-card" aria-pressed="false" onclick="selectOnboardingOption(this)">
+                <div class="option-card-header">
+                    <div class="option-icon">
+                        <span class="material-symbols-outlined" style="font-size:24px;">forum</span>
+                    </div>
+                    <div class="option-check">
+                        <span class="material-symbols-outlined" style="display:none;">check</span>
+                    </div>
+                </div>
+                <div class="option-name">Can hold a conversation</div>
+                <div class="option-desc">I can communicate in daily situations with some effort.</div>
+            </button>
+
+            <!-- Option 4 -->
+            <button class="option-card" aria-pressed="false" onclick="selectOnboardingOption(this)">
+                <div class="option-card-header">
+                    <div class="option-icon">
+                        <span class="material-symbols-outlined" style="font-size:24px;">workspace_premium</span>
+                    </div>
+                    <div class="option-check">
+                        <span class="material-symbols-outlined" style="display:none;">check</span>
+                    </div>
+                </div>
+                <div class="option-name">Looking for fluency</div>
+                <div class="option-desc">I want to master nuances for career or advanced academic use.</div>
+            </button>
+        </div>
+
+        <!-- Actions -->
+        <div class="onboarding-actions">
+            <button class="onboarding-back" onclick="window.location.href='index.html'">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Back
+            </button>
+            <button class="btn-primary" onclick="window.location.href='dashboard.html'">
+                Next
+                <span class="material-symbols-outlined" style="font-size:20px;">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+</main>
+
+<script>
+    function selectOnboardingOption(card) {
+        document.querySelectorAll('.option-card').forEach(c => {
+            c.classList.remove('selected');
+            c.setAttribute('aria-pressed', 'false');
+            const icon = c.querySelector('.option-check .material-symbols-outlined');
+            if (icon) icon.style.display = 'none';
+        });
+        card.classList.add('selected');
+        card.setAttribute('aria-pressed', 'true');
+        const icon = card.querySelector('.option-check .material-symbols-outlined');
+        if (icon) icon.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

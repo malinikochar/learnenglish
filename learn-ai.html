@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AI Tutor — Learn English</title>
+    <meta name="description" content="Learn English with your personal AI tutor. Practice grammar, vocabulary, conversation, and more."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <style>
+        /* ═══ AI TUTOR PAGE ═══ */
+        .tutor-container {
+            display: flex;
+            height: calc(100vh - 64px);
+            margin-top: 64px;
+        }
+
+        /* Sidebar */
+        .tutor-sidebar {
+            width: 300px;
+            background: var(--gray-100);
+            border-right: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 28px 24px 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .sidebar-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-header p {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        .sidebar-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-400);
+            padding: 20px 24px 8px;
+        }
+
+        .topic-list {
+            list-style: none;
+            padding: 0 12px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        .topic-item:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .topic-item.active {
+            background: var(--white);
+            color: var(--blue);
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .topic-item .material-symbols-outlined {
+            font-size: 20px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .level-select {
+            margin: 16px 24px;
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            background: var(--white);
+            color: var(--black);
+            cursor: pointer;
+            width: calc(100% - 48px);
+        }
+
+        .new-chat-btn {
+            margin: 16px 24px;
+            padding: 14px;
+            border-radius: var(--radius-full);
+            border: none;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .new-chat-btn:hover {
+            background: var(--blue-hover);
+        }
+
+        /* Chat area */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--white);
+            min-width: 0;
+        }
+
+        .chat-header {
+            padding: 16px 32px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+        }
+
+        .chat-header-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--gradient-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-header-icon .material-symbols-outlined {
+            color: var(--white);
+            font-size: 22px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .chat-header-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .chat-header-subtitle {
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        /* Messages */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chat-welcome {
+            text-align: center;
+            padding: 60px 40px;
+            max-width: 480px;
+            margin: auto;
+        }
+
+        .chat-welcome-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: var(--gradient-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .chat-welcome-icon .material-symbols-outlined {
+            font-size: 36px;
+            color: var(--white);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .chat-welcome h3 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .chat-welcome p {
+            color: var(--gray-400);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .msg {
+            display: flex;
+            gap: 12px;
+            max-width: 80%;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .msg.ai {
+            align-self: flex-start;
+        }
+
+        .msg.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .msg-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .msg.ai .msg-avatar {
+            background: var(--gradient-text);
+        }
+
+        .msg.user .msg-avatar {
+            background: var(--gray-200);
+        }
+
+        .msg-avatar .material-symbols-outlined {
+            font-size: 20px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .msg.ai .msg-avatar .material-symbols-outlined { color: var(--white); }
+        .msg.user .msg-avatar .material-symbols-outlined { color: var(--gray-600); }
+
+        .msg-bubble {
+            padding: 16px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .msg.ai .msg-bubble {
+            background: var(--gray-100);
+            color: var(--black);
+            border-top-left-radius: 6px;
+        }
+
+        .msg.user .msg-bubble {
+            background: var(--blue);
+            color: var(--white);
+            border-top-right-radius: 6px;
+        }
+
+        .msg-bubble strong { font-weight: 700; }
+        .msg-bubble code {
+            background: rgba(0,0,0,0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 16px 20px;
+            align-items: center;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-300);
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        /* Chat input */
+        .chat-input-area {
+            padding: 20px 32px;
+            border-top: 1px solid var(--gray-200);
+            background: var(--white);
+        }
+
+        .chat-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--gray-100);
+            border-radius: var(--radius-full);
+            padding: 6px 6px 6px 24px;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .chat-input-wrap:focus-within {
+            border-color: var(--blue);
+            background: var(--white);
+            box-shadow: 0 4px 20px rgba(0,113,227,0.1);
+        }
+
+        .chat-input-wrap input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--black);
+            background: transparent;
+        }
+
+        .chat-input-wrap input::placeholder { color: var(--gray-300); }
+
+        .chat-send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: var(--blue);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .chat-send-btn:hover { background: var(--blue-hover); }
+        .chat-send-btn:disabled { background: var(--gray-200); cursor: default; }
+        .chat-send-btn .material-symbols-outlined { font-size: 22px; }
+
+        /* ═══ MODE TOGGLE ═══ */
+        .mode-toggle {
+            display: flex;
+            background: var(--gray-100);
+            border-radius: var(--radius-full);
+            padding: 3px;
+            margin-left: auto;
+        }
+
+        .mode-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-400);
+        }
+
+        .mode-btn.active {
+            background: var(--white);
+            color: var(--blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mode-btn .material-symbols-outlined {
+            font-size: 18px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* ═══ AUDIO INPUT ═══ */
+        .audio-input-area {
+            padding: 20px 32px;
+            border-top: 1px solid var(--gray-200);
+            background: var(--white);
+            display: none;
+            text-align: center;
+        }
+
+        .audio-input-area.active { display: block; }
+        .chat-input-area.hidden { display: none; }
+
+        .mic-btn {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: none;
+            background: var(--blue);
+            color: var(--white);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mic-btn:hover { background: var(--blue-hover); transform: scale(1.05); }
+        .mic-btn .material-symbols-outlined { font-size: 32px; font-variation-settings: 'FILL' 1; }
+
+        .mic-btn.recording {
+            background: #c62828;
+            animation: micPulse 1.5s infinite;
+        }
+
+        @keyframes micPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(198,40,40,0.4); }
+            50% { box-shadow: 0 0 0 18px rgba(198,40,40,0); }
+        }
+
+        .mic-status {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-400);
+            margin-top: 14px;
+        }
+
+        .mic-status.recording { color: #c62828; }
+
+        .mic-transcript {
+            font-size: 15px;
+            color: var(--gray-600);
+            margin-top: 12px;
+            min-height: 24px;
+            font-style: italic;
+        }
+
+        /* Speaker button / audio player on AI messages */
+        .msg-speak-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-300);
+            padding: 4px;
+            border-radius: 6px;
+            transition: var(--transition);
+            display: none;
+            margin-top: 8px;
+        }
+
+        .msg-speak-btn:hover { color: var(--blue); background: var(--blue-light); }
+        .msg-speak-btn.playing { color: var(--blue); }
+        .msg-speak-btn .material-symbols-outlined { font-size: 18px; font-variation-settings: 'FILL' 1; }
+
+        body.audio-mode .msg.ai .msg-speak-btn { display: inline-flex; }
+
+        .voice-note-player {
+            margin-top: 8px;
+            height: 36px;
+            width: 100%;
+            max-width: 280px;
+            outline: none;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tutor-sidebar { display: none; }
+            .chat-messages { padding: 20px 16px; }
+            .chat-input-area { padding: 12px 16px 24px; }
+            .audio-input-area { padding: 12px 16px 24px; }
+            .msg { max-width: 90%; }
+            .tutor-container { height: calc(100vh - 64px - 72px); }
+            .mode-toggle { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+            <span class="logo-text">Learn English</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Learn</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a class="active" href="learn-ai.html" aria-current="page">AI Tutor</a></li>
+            <li><a href="test.html">Tests</a></li>
+            <li><a href="dashboard.html">Progress</a></li>
+            <li><a class="nav-cta" href="onboarding.html">Get Started</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ═══ TUTOR LAYOUT ═══ -->
+<div class="tutor-container">
+    <!-- Sidebar -->
+    <aside class="tutor-sidebar">
+        <div class="sidebar-header">
+            <h2>AI Tutor</h2>
+            <p>Your personal English coach</p>
+        </div>
+
+        <div class="sidebar-section-title">Level</div>
+        <select class="level-select" id="level-select">
+            <option value="Beginner">Beginner (A1-A2)</option>
+            <option value="Intermediate" selected>Intermediate (B1-B2)</option>
+            <option value="Advanced">Advanced (C1-C2)</option>
+        </select>
+
+        <div class="sidebar-section-title">Topics</div>
+        <ul class="topic-list" id="topic-list">
+            <li class="topic-item active" data-topic="Grammar">
+                <span class="material-symbols-outlined" style="color:var(--blue);">menu_book</span>
+                Grammar
+            </li>
+            <li class="topic-item" data-topic="Vocabulary">
+                <span class="material-symbols-outlined" style="color:var(--violet);">dictionary</span>
+                Vocabulary
+            </li>
+            <li class="topic-item" data-topic="Conversation">
+                <span class="material-symbols-outlined" style="color:#2e7d32;">forum</span>
+                Conversation
+            </li>
+            <li class="topic-item" data-topic="Writing">
+                <span class="material-symbols-outlined" style="color:#f57f17;">edit_note</span>
+                Writing
+            </li>
+            <li class="topic-item" data-topic="Pronunciation">
+                <span class="material-symbols-outlined" style="color:#e91e63;">record_voice_over</span>
+                Pronunciation
+            </li>
+        </ul>
+
+        <button class="new-chat-btn" id="new-chat-btn">
+            <span class="material-symbols-outlined" style="font-size:18px;">add</span>
+            New Conversation
+        </button>
+    </aside>
+
+    <!-- Chat Area -->
+    <main class="chat-area">
+        <div class="chat-header">
+            <div class="chat-header-icon">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </div>
+            <div>
+                <div class="chat-header-title" id="chat-title">Grammar Tutor</div>
+                <div class="chat-header-subtitle" id="chat-subtitle">Intermediate level</div>
+            </div>
+            <div class="mode-toggle" id="mode-toggle">
+                <button class="mode-btn active" data-mode="text" id="text-mode-btn">
+                    <span class="material-symbols-outlined">keyboard</span>
+                    Text
+                </button>
+                <button class="mode-btn" data-mode="audio" id="audio-mode-btn">
+                    <span class="material-symbols-outlined">mic</span>
+                    Audio
+                </button>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-welcome" id="chat-welcome">
+                <div class="chat-welcome-icon">
+                    <span class="material-symbols-outlined">smart_toy</span>
+                </div>
+                <h3>Hi! I'm your AI Tutor 👋</h3>
+                <p>Select a topic from the sidebar, choose your level, and let's start learning English together. I'll teach you concepts, give examples, and quiz you along the way!</p>
+            </div>
+        </div>
+
+        <div class="chat-input-area" id="text-input-area">
+            <div class="chat-input-wrap">
+                <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off"/>
+                <button class="chat-send-btn" id="send-btn" aria-label="Send message">
+                    <span class="material-symbols-outlined">arrow_upward</span>
+                </button>
+            </div>
+        </div>
+        <div class="audio-input-area" id="audio-input-area">
+            <button class="mic-btn" id="mic-btn" aria-label="Start recording">
+                <span class="material-symbols-outlined">mic</span>
+            </button>
+            <div class="mic-status" id="mic-status">Tap to speak</div>
+            <div class="mic-transcript" id="mic-transcript"></div>
+        </div>
+    </main>
+</div>
+
+<!-- ═══ MOBILE NAV ═══ -->
+<nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html">
+        <span class="material-symbols-outlined">school</span>
+        <span>Learn</span>
+    </a>
+    <a class="active" href="learn-ai.html" aria-current="page">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">smart_toy</span>
+        <span>AI Tutor</span>
+    </a>
+    <a href="test.html">
+        <span class="material-symbols-outlined">quiz</span>
+        <span>Tests</span>
+    </a>
+    <a href="dashboard.html">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Progress</span>
+    </a>
+</nav>
+
+<script src="js/app-data.js"></script>
+<script src="js/ai-service.js"></script>
+<script>
+    const messagesEl = document.getElementById('chat-messages');
+    const inputEl = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const welcomeEl = document.getElementById('chat-welcome');
+    const titleEl = document.getElementById('chat-title');
+    const subtitleEl = document.getElementById('chat-subtitle');
+    const textInputArea = document.getElementById('text-input-area');
+    const audioInputArea = document.getElementById('audio-input-area');
+    const micBtn = document.getElementById('mic-btn');
+    const micStatus = document.getElementById('mic-status');
+    const micTranscript = document.getElementById('mic-transcript');
+
+    let chatHistory = [];
+    let currentTopic = 'Grammar';
+    let currentLevel = 'Intermediate';
+    let isLoading = false;
+    let audioMode = false;
+    let currentAudio = null;
+
+    // ═══ MODE TOGGLE ═══
+    document.getElementById('mode-toggle').addEventListener('click', (e) => {
+        const btn = e.target.closest('.mode-btn');
+        if (!btn) return;
+        const mode = btn.dataset.mode;
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        audioMode = (mode === 'audio');
+        document.body.classList.toggle('audio-mode', audioMode);
+
+        if (audioMode) {
+            textInputArea.classList.add('hidden');
+            audioInputArea.classList.add('active');
+        } else {
+            textInputArea.classList.remove('hidden');
+            audioInputArea.classList.remove('active');
+            stopRecording();
+        }
+    });
+
+    // ═══ SPEECH RECOGNITION (STT) ═══
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    let isRecording = false;
+
+    if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = () => {
+            isRecording = true;
+            micBtn.classList.add('recording');
+            micBtn.querySelector('.material-symbols-outlined').textContent = 'stop';
+            micStatus.textContent = 'Listening...';
+            micStatus.classList.add('recording');
+            micTranscript.textContent = '';
+        };
+
+        recognition.onresult = (event) => {
+            let interim = '';
+            let final = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    final += event.results[i][0].transcript;
+                } else {
+                    interim += event.results[i][0].transcript;
+                }
+            }
+            micTranscript.textContent = final || interim;
+            if (final) {
+                stopRecording();
+                sendAudioMessage(final.trim());
+            }
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            micStatus.textContent = event.error === 'not-allowed' ? 'Microphone access denied' : 'Error — tap to retry';
+            stopRecording();
+        };
+
+        recognition.onend = () => {
+            stopRecording();
+        };
+    }
+
+    micBtn.addEventListener('click', () => {
+        if (!SpeechRecognition) {
+            micStatus.textContent = 'Speech recognition not supported in this browser';
+            return;
+        }
+        if (isRecording) {
+            recognition.stop();
+        } else {
+            micTranscript.textContent = '';
+            recognition.start();
+        }
+    });
+
+    function stopRecording() {
+        isRecording = false;
+        micBtn.classList.remove('recording');
+        micBtn.querySelector('.material-symbols-outlined').textContent = 'mic';
+        micStatus.textContent = 'Tap to speak';
+        micStatus.classList.remove('recording');
+    }
+
+    function sendAudioMessage(text) {
+        if (!text || isLoading) return;
+        appendMessage('user', text);
+        chatHistory.push({ role: 'user', content: text });
+        sendToAI();
+    }
+
+    // ═══ TEXT-TO-SPEECH (TTS) ═══
+    async function playTTS(text, btnElement) {
+        // Change button state to loading
+        const originalHtml = btnElement.innerHTML;
+        btnElement.innerHTML = '<span class="material-symbols-outlined" style="animation: micPulse 1s infinite;">sync</span>';
+        btnElement.style.pointerEvents = 'none';
+
+        try {
+            const cleanText = text
+                .replace(/\*\*(.*?)\*\*/g, '$1')
+                .replace(/`(.*?)`/g, '$1')
+                .replace(/[#*_~]/g, '')
+                .replace(/\n+/g, ' ');
+
+            const response = await fetch('/api/tts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: cleanText })
+            });
+
+            if (!response.ok) throw new Error('TTS failed');
+
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            
+            // Create the HTML audio player element (Voice Note)
+            const audioEl = document.createElement('audio');
+            audioEl.controls = true;
+            audioEl.src = url;
+            audioEl.className = 'voice-note-player';
+            
+            // Auto play if in audio mode
+            if (audioMode) {
+                audioEl.autoplay = true;
+            }
+
+            // Replace the play button with the inline voice note player
+            btnElement.replaceWith(audioEl);
+
+        } catch (err) {
+            console.error('TTS error:', err);
+            btnElement.innerHTML = originalHtml;
+            btnElement.style.pointerEvents = 'auto';
+            alert("Failed to load audio voice note.");
+        }
+    }
+
+    // ═══ TOPIC / LEVEL / NEW CHAT ═══
+    document.getElementById('topic-list').addEventListener('click', (e) => {
+        const item = e.target.closest('.topic-item');
+        if (!item) return;
+        document.querySelectorAll('.topic-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        currentTopic = item.dataset.topic;
+        titleEl.textContent = `${currentTopic} Tutor`;
+        startNewChat();
+    });
+
+    document.getElementById('level-select').addEventListener('change', (e) => {
+        currentLevel = e.target.value;
+        subtitleEl.textContent = `${currentLevel} level`;
+        if (chatHistory.length > 0) startNewChat();
+    });
+
+    document.getElementById('new-chat-btn').addEventListener('click', startNewChat);
+
+    // Send text message
+    sendBtn.addEventListener('click', sendMessage);
+    inputEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    function startNewChat() {
+        chatHistory = [];
+        messagesEl.innerHTML = '';
+        welcomeEl && (welcomeEl.style.display = 'none');
+
+        const systemPrompt = AIService.getTutorSystemPrompt(currentTopic, currentLevel);
+        chatHistory.push({ role: 'system', content: systemPrompt });
+
+        subtitleEl.textContent = `${currentLevel} level`;
+        titleEl.textContent = `${currentTopic} Tutor`;
+
+        sendToAI();
+    }
+
+    async function sendMessage() {
+        const text = inputEl.value.trim();
+        if (!text || isLoading) return;
+
+        inputEl.value = '';
+        appendMessage('user', text);
+        chatHistory.push({ role: 'user', content: text });
+
+        await sendToAI();
+    }
+
+    async function sendToAI() {
+        isLoading = true;
+        sendBtn.disabled = true;
+
+        const typingEl = document.createElement('div');
+        typingEl.className = 'msg ai';
+        typingEl.id = 'typing';
+        typingEl.innerHTML = `
+            <div class="msg-avatar"><span class="material-symbols-outlined">smart_toy</span></div>
+            <div class="msg-bubble typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>`;
+        messagesEl.appendChild(typingEl);
+        scrollToBottom();
+
+        try {
+            if (chatHistory.length === 0 || chatHistory[0].role !== 'system') {
+                const systemPrompt = AIService.getTutorSystemPrompt(currentTopic, currentLevel);
+                chatHistory.unshift({ role: 'system', content: systemPrompt });
+            }
+
+            const response = await AIService.chat(chatHistory);
+            typingEl.remove();
+
+            appendMessage('ai', response);
+            chatHistory.push({ role: 'assistant', content: response });
+
+            // In audio mode, auto-play the AI response
+            if (audioMode) {
+                const lastSpeakBtn = messagesEl.querySelector('.msg:last-child .msg-speak-btn');
+                playTTS(response, lastSpeakBtn);
+            }
+
+            AppData.addXP(5);
+        } catch (err) {
+            typingEl.remove();
+            appendMessage('ai', `⚠️ Sorry, I encountered an error: ${err.message}. Please try again.`);
+        }
+
+        isLoading = false;
+        sendBtn.disabled = false;
+        if (!audioMode) inputEl.focus();
+    }
+
+    function appendMessage(type, text) {
+        if (welcomeEl) welcomeEl.style.display = 'none';
+
+        const div = document.createElement('div');
+        div.className = `msg ${type}`;
+
+        const icon = type === 'ai' ? 'smart_toy' : 'person';
+        let html = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/`(.*?)`/g, '<code>$1</code>')
+            .replace(/\n/g, '<br/>');
+
+        const speakBtn = type === 'ai'
+            ? `<button class="msg-speak-btn" onclick="playTTS(this.dataset.text, this)" data-text="${text.replace(/"/g, '&quot;')}" aria-label="Play audio">
+                    <span class="material-symbols-outlined">volume_up</span>
+               </button>`
+            : '';
+
+        div.innerHTML = `
+            <div class="msg-avatar"><span class="material-symbols-outlined">${icon}</span></div>
+            <div><div class="msg-bubble">${html}</div>${speakBtn}</div>`;
+
+        messagesEl.appendChild(div);
+        scrollToBottom();
+    }
+
+    function scrollToBottom() {
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

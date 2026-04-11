@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Evolve Learn - Learning Module</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#006D77",
+                        "primary-container": "#83C5BE",
+                        "on-primary": "#FFFFFF",
+                        "on-primary-container": "#002022",
+                        "secondary": "#ED6A5A",
+                        "secondary-container": "#F4A261",
+                        "on-secondary": "#FFFFFF",
+                        "tertiary": "#E29578",
+                        "tertiary-container": "#FFDDD2",
+                        "on-tertiary": "#FFFFFF",
+                        "surface": "#F8FAFB",
+                        "surface-container": "#EDF2F4",
+                        "surface-container-low": "#F1F5F9",
+                        "surface-container-high": "#E2E8F0",
+                        "surface-container-lowest": "#FFFFFF",
+                        "on-surface": "#2D3748",
+                        "on-surface-variant": "#4A5568",
+                        "outline": "#CBD5E0",
+                        "outline-variant": "#E2E8F0",
+                        "error": "#E53E3E"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1.5rem",
+                        "lg": "2.5rem",
+                        "xl": "9999px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFB;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<!-- Top Navigation Header -->
+<header class="w-full sticky top-0 z-50 bg-white/70 backdrop-blur-2xl px-6 py-6 flex items-center gap-6 border-b border-white/20">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="close">close</span>
+</button>
+<div class="flex-grow h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[65%] h-full bg-gradient-to-r from-primary to-primary-container rounded-full relative">
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+</div>
+<div class="flex items-center gap-2 px-4 py-1.5 bg-tertiary-container rounded-full border border-tertiary/20">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="bolt" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-primary font-extrabold text-sm tracking-tight">12</span>
+</div>
+</header>
+<main class="flex-grow max-w-4xl mx-auto w-full px-6 py-12 flex flex-col gap-10">
+<!-- Editorial Headline -->
+<section class="flex flex-col gap-3">
+<span class="text-primary font-bold tracking-widest text-xs uppercase bg-primary/10 w-fit px-3 py-1 rounded-full">Grammar Essentials</span>
+<h1 class="text-4xl md:text-5xl text-on-surface tracking-tight leading-tight">
+                Common Phrases
+            </h1>
+<p class="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                Mastering everyday expressions helps you sound more natural and fluid in casual conversations.
+            </p>
+</section>
+<!-- Bento Grid Content Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Explanation Card -->
+<div class="md:col-span-7 glass-card rounded-lg p-8 shadow-xl shadow-primary/5 flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="menu_book">menu_book</span>
+</div>
+<h3 class="text-xl font-bold tracking-tight">The "What's up?" Phrase</h3>
+</div>
+<p class="text-on-surface-variant leading-relaxed">
+                    Used as a casual greeting, <strong class="text-on-surface font-bold">"What's up?"</strong> is similar to "How are you?" but much more informal. It is often answered with "Not much" or "Just chilling."
+                </p>
+<div class="bg-surface-container-low/50 backdrop-blur-md rounded-lg p-6 flex flex-col gap-4 border border-white/40">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">Listen &amp; Repeat</span>
+<span class="material-symbols-outlined text-primary/40" data-icon="volume_up">volume_up</span>
+</div>
+<div class="flex items-center gap-4 bg-white/80 p-4 rounded-full shadow-sm border border-outline-variant/50 cursor-pointer hover:shadow-md transition-all">
+<button class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div>
+<p class="font-extrabold text-lg text-on-surface">"Hey, what's up?"</p>
+<p class="text-sm text-on-surface-variant/70 font-medium">/heɪ wɒts ʌp/</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Context Card -->
+<div class="md:col-span-5 bg-primary rounded-lg relative overflow-hidden flex flex-col justify-end p-8 min-h-[320px] group">
+<img alt="Two friends chatting" class="absolute inset-0 w-full h-full object-cover mix-blend-soft-light opacity-50 transition-transform duration-700 group-hover:scale-110" data-alt="Two young adults laughing and chatting in a bright modern cafe with soft bokeh background and warm natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSvjGoK128NakMLPTMBXX_uaFkktaYEf8X8RupwWGk6tZb0wOx428jYci6guX3bNp6_kV3d-coKCe_6KN9DdibZ1r6RtSso4jH2PBEXinFMrRcZhmWYsMqtmiKmmbFlBR0NbIXk8CSHcsxhtEN7DP7ZpVE_G5HrZ185zs0UWhAj6TmKRVlQ4bIn_Pr7DfygF4YluCmnLQFsC25soTw9kTXKIZvzJHrbMrjN9jZzS2Xd9UhMmVVjBvKzfUJohr9z0sAn00cNCVpIv8L"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="relative z-10">
+<span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-extrabold text-white uppercase tracking-widest mb-3">Context Hint</span>
+<h4 class="text-white text-2xl font-extrabold leading-tight">Social situations with friends and peers.</h4>
+</div>
+</div>
+<!-- Interactive Exercise Section -->
+<div class="md:col-span-12 mt-4">
+<div class="glass-card rounded-lg p-10 shadow-2xl shadow-primary/10 border border-white/60">
+<div class="max-w-2xl mx-auto text-center flex flex-col gap-10">
+<h2 class="text-3xl font-extrabold tracking-tight">Complete the sentence</h2>
+<div class="flex flex-wrap justify-center items-center gap-4 text-2xl font-bold text-on-surface-variant">
+<span>"Hey Mark,</span>
+<div class="w-56 h-16 border-b-4 border-dashed border-primary-container bg-surface-container-low rounded-t-lg flex items-center justify-center text-primary font-extrabold">
+<!-- Placeholder for interaction -->
+</div>
+<span>lately?"</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+<button class="group p-6 rounded-full border-2 border-surface-container-high hover:border-primary/50 hover:bg-primary/5 transition-all text-left flex items-center justify-between">
+<span class="text-lg font-bold">how is you</span>
+<div class="w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary transition-colors"></div>
+</button>
+<button class="group p-6 rounded-full border-2 border-primary bg-primary/5 transition-all text-left flex items-center justify-between shadow-lg shadow-primary/10">
+<span class="text-lg font-extrabold text-primary">what's up</span>
+<div class="w-7 h-7 rounded-full border-2 border-primary bg-primary flex items-center justify-center ring-4 ring-primary/10">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+</button>
+<button class="group p-6 rounded-full border-2 border-surface-container-high hover:border-primary/50 hover:bg-primary/5 transition-all text-left flex items-center justify-between">
+<span class="text-lg font-bold">what is</span>
+<div class="w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary transition-colors"></div>
+</button>
+<button class="group p-6 rounded-full border-2 border-surface-container-high hover:border-primary/50 hover:bg-primary/5 transition-all text-left flex items-center justify-between">
+<span class="text-lg font-bold">doing good</span>
+<div class="w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary transition-colors"></div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Footer Action Area -->
+<footer class="sticky bottom-0 w-full bg-white/90 backdrop-blur-3xl py-8 px-6 border-t border-surface-container shadow-[0_-20px_40px_rgba(0,0,0,0.03)]">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="lightbulb" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div>
+<p class="text-sm font-extrabold text-on-surface">Pro-tip</p>
+<p class="text-xs text-on-surface-variant font-medium">Tap the words to see their definition</p>
+</div>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="flex-grow md:flex-none px-10 py-5 rounded-full font-extrabold text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                    Skip
+                </button>
+<button class="flex-grow md:min-w-[260px] bg-primary text-white px-10 py-5 rounded-full font-extrabold text-lg shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all">
+                    Check Answer
+                </button>
+</div>
+</div>
+</footer>
+</body></html>

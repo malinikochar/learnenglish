@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Intermediate English (B1/B2) — Learn English</title>
+    <meta name="description" content="Master professional and social communication with our Intermediate English course. 12 modules, 48 hours of focused learning."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <style>
+        /* ═══ COURSE PAGE SPECIFIC ═══ */
+        .course-hero {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 140px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(ellipse at center, rgba(0,113,227,0.2) 0%, rgba(191,90,242,0.1) 40%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .course-hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 6px 18px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+
+        .course-hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .course-hero p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .course-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.08);
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .course-meta-item .material-symbols-outlined {
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+        /* Module sections */
+        .module-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .module-header h2 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .module-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: var(--blue-light);
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .lesson-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .lesson-item:hover {
+            border-color: var(--blue);
+            box-shadow: var(--shadow-sm);
+            transform: translateX(4px);
+        }
+
+        .lesson-item-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .lesson-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .lesson-icon.done {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .lesson-icon.active {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .lesson-icon.locked {
+            background: var(--gray-100);
+            color: var(--gray-400);
+        }
+
+        .lesson-icon .material-symbols-outlined { font-size: 20px; }
+
+        .lesson-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 2px;
+        }
+
+        .lesson-desc {
+            font-size: 13px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        .lesson-item.active-lesson {
+            border: 2px solid var(--blue);
+            box-shadow: 0 4px 20px rgba(0,113,227,0.1);
+            background: var(--white);
+        }
+
+        .lesson-action-btn {
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lesson-action-btn:hover {
+            background: var(--blue-hover);
+            box-shadow: 0 4px 16px rgba(0,113,227,0.3);
+        }
+
+        /* Locked module */
+        .module-locked {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .module-locked .lesson-item {
+            background: var(--gray-50);
+            border-color: var(--gray-100);
+        }
+
+        /* Speaking CTA */
+        .speaking-cta {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .speaking-cta-card {
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaking-cta-card::before {
+            content: '';
+            position: absolute;
+            right: -100px;
+            top: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(0,113,227,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .speaking-icon-wrap {
+            width: 88px;
+            height: 88px;
+            border-radius: var(--radius-lg);
+            background: var(--gradient-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .speaking-icon-wrap .material-symbols-outlined {
+            font-size: 40px;
+            color: var(--white);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        @media (max-width: 768px) {
+            .course-hero { padding: 120px 20px 60px; }
+            .speaking-cta-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 36px;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+            <span class="logo-text">Learn English</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Learn</a></li>
+            <li><a class="active" href="courses.html" aria-current="page">Courses</a></li>
+            <li><a href="learn-ai.html">AI Tutor</a></li>
+            <li><a href="test.html">Tests</a></li>
+            <li><a href="dashboard.html">Progress</a></li>
+            <li><a class="nav-cta" href="onboarding.html">Get Started</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ═══ COURSE HERO ═══ -->
+<section class="course-hero">
+    <div class="course-hero-inner fade-in">
+        <div class="course-hero-badge">B1 / B2 Level</div>
+        <h1>Intermediate English</h1>
+        <p>Master professional and social communication. Shift from basic fluency to expressive accuracy with focused modules on workplace dynamics and conversational strategies.</p>
+        <div class="course-meta">
+            <div class="course-meta-item">
+                <span class="material-symbols-outlined">timer</span>
+                48 Hours total
+            </div>
+            <div class="course-meta-item">
+                <span class="material-symbols-outlined">assignment</span>
+                12 Modules
+            </div>
+            <div class="course-meta-item">
+                <span class="material-symbols-outlined">group</span>
+                24K learners
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ MODULE LIST ═══ -->
+<section class="section" style="padding-top:64px;padding-bottom:40px;">
+    <div class="module-section">
+        <!-- Module 1 -->
+        <div class="reveal" style="margin-bottom:48px;">
+            <div class="module-header">
+                <h2>
+                    <span class="module-number">01</span>
+                    Everyday Conversations
+                </h2>
+                <span class="badge badge-blue">85% Complete</span>
+            </div>
+            <div class="lesson-list">
+                <!-- Lesson 1: Done -->
+                <div class="lesson-item">
+                    <div class="lesson-item-left">
+                        <div class="lesson-icon done">
+                            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                        </div>
+                        <div>
+                            <div class="lesson-title">Nuances of Politeness</div>
+                            <div class="lesson-desc">Modal verbs and indirect questions.</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-green" style="font-size:11px;">Done</span>
+                </div>
+                <!-- Lesson 2: Active -->
+                <div class="lesson-item active-lesson">
+                    <div class="lesson-item-left">
+                        <div class="lesson-icon active">
+                            <span class="material-symbols-outlined">play_circle</span>
+                        </div>
+                        <div>
+                            <div class="lesson-title">Idiomatic Expressions</div>
+                            <div class="lesson-desc">Common phrases for daily social interaction.</div>
+                        </div>
+                    </div>
+                    <button class="lesson-action-btn" onclick="window.location.href='module.html'">Continue</button>
+                </div>
+                <!-- Lesson 3: Next -->
+                <div class="lesson-item">
+                    <div class="lesson-item-left">
+                        <div class="lesson-icon locked">
+                            <span class="material-symbols-outlined">mic</span>
+                        </div>
+                        <div>
+                            <div class="lesson-title">Pronunciation: Vowel Shifts</div>
+                            <div class="lesson-desc">Focusing on the schwa and diphthongs.</div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined" style="color:var(--gray-300);font-size:20px;">chevron_right</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2: Locked -->
+        <div class="module-locked reveal" style="margin-bottom:48px;">
+            <div class="module-header">
+                <h2 style="color:var(--gray-400);">
+                    <span class="module-number" style="background:var(--gray-100);color:var(--gray-400);">02</span>
+                    Business Basics
+                </h2>
+                <span class="material-symbols-outlined" style="color:var(--gray-300);">lock</span>
+            </div>
+            <div class="lesson-list">
+                <div class="lesson-item">
+                    <div class="lesson-item-left">
+                        <div class="lesson-icon locked">
+                            <span class="material-symbols-outlined">business_center</span>
+                        </div>
+                        <div>
+                            <div class="lesson-title" style="color:var(--gray-400);">Email Etiquette</div>
+                            <div class="lesson-desc">Formal vs. Informal digital communication.</div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined" style="color:var(--gray-300);font-size:20px;">lock</span>
+                </div>
+                <div class="lesson-item">
+                    <div class="lesson-item-left">
+                        <div class="lesson-icon locked">
+                            <span class="material-symbols-outlined">groups</span>
+                        </div>
+                        <div>
+                            <div class="lesson-title" style="color:var(--gray-400);">The Pitch: Presenting Ideas</div>
+                            <div class="lesson-desc">Structuring arguments for professional buy-in.</div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined" style="color:var(--gray-300);font-size:20px;">lock</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ SPEAKING CTA ═══ -->
+<section style="padding:0 24px 80px;">
+    <div class="speaking-cta">
+        <div class="speaking-cta-card reveal">
+            <div class="speaking-icon-wrap">
+                <span class="material-symbols-outlined">record_voice_over</span>
+            </div>
+            <div>
+                <h3 style="font-size:24px;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px;">Practice Speaking</h3>
+                <p style="font-size:16px;color:var(--gray-400);line-height:1.6;margin-bottom:20px;">Ready to test your pronunciation? Our AI-powered speaking lab provides real-time feedback on your accent and fluency.</p>
+                <button class="btn-primary btn-primary-sm">
+                    Open Lab
+                    <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer" id="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-name">Learn English</div>
+                <p class="footer-brand-desc">Redefining how the world learns English — through beautiful, intuitive digital experiences.</p>
+            </div>
+            <div>
+                <div class="footer-col-title">Curriculum</div>
+                <ul class="footer-links">
+                    <li><a href="courses.html">Course Library</a></li>
+                    <li><a href="resources.html">Grammar Guide</a></li>
+                    <li><a href="resources.html">Vocabulary Builder</a></li>
+                    <li><a href="resources.html">Study Plans</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Teachers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Connect</div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Website"><span class="material-symbols-outlined">public</span></a>
+                    <a href="#" aria-label="Email"><span class="material-symbols-outlined">alternate_email</span></a>
+                    <a href="#" aria-label="Share"><span class="material-symbols-outlined">share</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span class="footer-year"></span> Learn English. All rights reserved.</span>
+            <span>Privacy · Terms · Accessibility</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ MOBILE BOTTOM NAV ═══ -->
+<nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html">
+        <span class="material-symbols-outlined">school</span>
+        <span>Learn</span>
+    </a>
+    <a href="learn-ai.html">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <span>AI Tutor</span>
+    </a>
+    <a href="test.html">
+        <span class="material-symbols-outlined">quiz</span>
+        <span>Tests</span>
+    </a>
+    <a href="dashboard.html">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Progress</span>
+    </a>
+</nav>
+
+<script>
+    // Dynamic copyright year
+    document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+
+    // Scroll reveal with stagger
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el, i) => el.dataset.delay = (i % 4) * 100);
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = parseInt(entry.target.dataset.delay) || 0;
+                setTimeout(() => entry.target.classList.add('visible'), delay);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

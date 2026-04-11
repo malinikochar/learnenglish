@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Resources — Learn English</title>
+    <meta name="description" content="Free English learning resources: grammar guides, vocabulary flashcards, pronunciation tools, study plans, and downloadable worksheets."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <style>
+        /* ═══ RESOURCES PAGE SPECIFIC ═══ */
+
+        /* Hero */
+        .resources-hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resources-hero::before {
+            content: '';
+            position: absolute;
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(ellipse at center, rgba(191,90,242,0.06) 0%, rgba(0,113,227,0.04) 40%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .resources-hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .resources-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: 6px 18px 6px 8px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .resources-hero-badge .material-symbols-outlined {
+            font-size: 18px;
+            color: var(--violet);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .resources-hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+            color: var(--black);
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .resources-hero p {
+            font-size: clamp(17px, 2vw, 21px);
+            color: var(--gray-400);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        /* Search bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            max-width: 560px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius-full);
+            padding: 6px 6px 6px 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            animation: fadeInUp 0.8s ease 0.3s both;
+            transition: var(--transition);
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--blue);
+            box-shadow: 0 4px 24px rgba(0,113,227,0.15);
+        }
+
+        .search-bar .material-symbols-outlined {
+            color: var(--gray-400);
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--black);
+            background: transparent;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--gray-300);
+        }
+
+        .search-bar button {
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            border-radius: var(--radius-full);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .search-bar button:hover {
+            background: var(--blue-hover);
+        }
+
+        /* Categories */
+        .categories-section {
+            background: var(--white);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            background: var(--white);
+            border-color: var(--blue);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px);
+        }
+
+        .category-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+
+        .category-icon .material-symbols-outlined {
+            font-size: 32px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+
+        .category-name {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+            color: var(--black);
+        }
+
+        .category-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-400);
+        }
+
+        /* Featured Resources (Bento-style) */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            grid-auto-rows: minmax(260px, auto);
+        }
+
+        .featured-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition-slow);
+            cursor: pointer;
+        }
+
+        .featured-card:hover {
+            transform: scale(1.01);
+        }
+
+        .featured-card.span-7 { grid-column: span 7; }
+        .featured-card.span-5 { grid-column: span 5; }
+        .featured-card.span-4 { grid-column: span 4; }
+        .featured-card.span-8 { grid-column: span 8; }
+
+        .featured-card-dark {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .featured-card-light {
+            background: var(--gray-100);
+            padding: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .featured-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            opacity: 0.6;
+        }
+
+        .featured-title {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .featured-desc {
+            font-size: 15px;
+            opacity: 0.75;
+            line-height: 1.5;
+            max-width: 380px;
+        }
+
+        .featured-icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .featured-icon-wrap .material-symbols-outlined {
+            font-size: 28px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .featured-card-light .featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--blue);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .featured-card-light .featured-link:hover {
+            gap: 10px;
+        }
+
+        .featured-card-light .featured-link .material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        /* Resource list section */
+        .resources-list-section {
+            background: var(--gray-100);
+        }
+
+        .resources-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+        }
+
+        .resource-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gray-200);
+        }
+
+        .resource-item-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .resource-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resource-icon .material-symbols-outlined {
+            font-size: 26px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .resource-item h3 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+
+        .resource-item p {
+            font-size: 15px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .resource-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .resource-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-400);
+        }
+
+        .resource-meta-item .material-symbols-outlined {
+            font-size: 16px;
+        }
+
+        /* Quick tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid var(--gray-200);
+        }
+
+        .tool-card:hover {
+            border-color: var(--blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .tool-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tool-icon .material-symbols-outlined {
+            font-size: 28px;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .tool-card h3 {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            margin-bottom: 6px;
+        }
+
+        .tool-card p {
+            font-size: 15px;
+            color: var(--gray-400);
+            line-height: 1.5;
+        }
+
+        .tool-card .badge {
+            margin-top: 14px;
+        }
+
+        /* CTA */
+        .resources-cta {
+            background: var(--gradient-dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resources-cta::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(ellipse at center, rgba(0,113,227,0.15) 0%, rgba(191,90,242,0.1) 40%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .resources-cta .section-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .resources-cta h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .resources-cta p {
+            font-size: 19px;
+            color: rgba(255,255,255,0.6);
+            max-width: 480px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .featured-card.span-7, .featured-card.span-5,
+            .featured-card.span-4, .featured-card.span-8 {
+                grid-column: span 12;
+            }
+            .resources-list { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .resources-hero { padding: 120px 20px 60px; }
+            .categories-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .resources-list { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .search-bar { padding: 4px 4px 4px 16px; }
+            .search-bar button { padding: 10px 20px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+            <span class="logo-text">Learn English</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Learn</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="learn-ai.html">AI Tutor</a></li>
+            <li><a href="test.html">Tests</a></li>
+            <li><a href="dashboard.html">Progress</a></li>
+            <li><a class="nav-cta" href="onboarding.html">Get Started</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="resources-hero">
+    <div class="resources-hero-inner">
+        <div class="resources-hero-badge">
+            <span class="material-symbols-outlined">auto_awesome</span>
+            100+ Free Learning Resources
+        </div>
+        <h1>Your learning<br/><span class="gradient-text">toolkit.</span></h1>
+        <p>Grammar guides, vocabulary builders, pronunciation tools, and curated study plans — everything you need to accelerate your English journey.</p>
+        <div class="search-bar">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Search resources, guides, worksheets..." id="resource-search"/>
+            <button>Search</button>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CATEGORIES ═══ -->
+<section class="section categories-section">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">Browse by Category</div>
+            <h2 class="section-title">Find what you need</h2>
+            <p class="section-subtitle">Explore our curated collection of learning resources organized by skill area.</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card reveal">
+                <div class="category-icon" style="background:var(--blue-light);">
+                    <span class="material-symbols-outlined" style="color:var(--blue);">menu_book</span>
+                </div>
+                <div class="category-name">Grammar Guides</div>
+                <div class="category-count">32 resources</div>
+            </div>
+            <div class="category-card reveal">
+                <div class="category-icon" style="background:#f3e8fd;">
+                    <span class="material-symbols-outlined" style="color:var(--violet);">dictionary</span>
+                </div>
+                <div class="category-name">Vocabulary</div>
+                <div class="category-count">48 resources</div>
+            </div>
+            <div class="category-card reveal">
+                <div class="category-icon" style="background:#e8f5e9;">
+                    <span class="material-symbols-outlined" style="color:#2e7d32;">record_voice_over</span>
+                </div>
+                <div class="category-name">Pronunciation</div>
+                <div class="category-count">24 resources</div>
+            </div>
+            <div class="category-card reveal">
+                <div class="category-icon" style="background:#fff8e1;">
+                    <span class="material-symbols-outlined" style="color:#f57f17;">edit_note</span>
+                </div>
+                <div class="category-name">Writing</div>
+                <div class="category-count">18 resources</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FEATURED RESOURCES (Bento Grid) ═══ -->
+<section class="section" style="background:var(--white);">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">Featured</div>
+            <h2 class="section-title">Editors' picks</h2>
+            <p class="section-subtitle">Hand-picked resources recommended by our language experts.</p>
+        </div>
+        <div class="featured-grid">
+            <!-- Card 1: Dark, large -->
+            <div class="featured-card featured-card-dark span-7 reveal">
+                <div class="featured-icon-wrap" style="background:rgba(255,255,255,0.12);">
+                    <span class="material-symbols-outlined" style="color:var(--white);">school</span>
+                </div>
+                <div class="featured-tag">Complete Guide</div>
+                <div class="featured-title">English Tenses Mastery</div>
+                <div class="featured-desc">A comprehensive breakdown of all 12 English tenses with timeline visuals, example sentences, and interactive exercises.</div>
+            </div>
+            <!-- Card 2: Light, smaller -->
+            <div class="featured-card featured-card-light span-5 reveal">
+                <div>
+                    <div class="featured-icon-wrap" style="background:var(--blue-light);">
+                        <span class="material-symbols-outlined" style="color:var(--blue);">headphones</span>
+                    </div>
+                    <div class="featured-tag" style="color:var(--gray-400);">Audio Resource</div>
+                    <div class="featured-title" style="color:var(--black);">Listening Comprehension Pack</div>
+                    <div class="featured-desc" style="color:var(--gray-500);">25 curated audio clips with transcripts — from news broadcasts to everyday dialogues.</div>
+                </div>
+                <a href="#" class="featured-link">
+                    Start listening
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+            <!-- Card 3: Light -->
+            <div class="featured-card featured-card-light span-4 reveal">
+                <div>
+                    <div class="featured-icon-wrap" style="background:#f3e8fd;">
+                        <span class="material-symbols-outlined" style="color:var(--violet);">conversion_path</span>
+                    </div>
+                    <div class="featured-tag" style="color:var(--gray-400);">Study Plan</div>
+                    <div class="featured-title" style="color:var(--black);">30-Day Fluency Challenge</div>
+                    <div class="featured-desc" style="color:var(--gray-500);">A structured daily plan to boost your speaking confidence in just one month.</div>
+                </div>
+                <a href="#" class="featured-link">
+                    View plan
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+            <!-- Card 4: Dark, large -->
+            <div class="featured-card featured-card-dark span-8 reveal">
+                <div class="featured-icon-wrap" style="background:rgba(255,255,255,0.12);">
+                    <span class="material-symbols-outlined" style="color:var(--white);">psychology</span>
+                </div>
+                <div class="featured-tag">AI-Powered</div>
+                <div class="featured-title">Smart Vocabulary Flashcards</div>
+                <div class="featured-desc">Spaced repetition flashcards that adapt to your learning pace. Over 3,000 words organized by CEFR level with pronunciation audio.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ALL RESOURCES ═══ -->
+<section class="section resources-list-section">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">Library</div>
+            <h2 class="section-title">All resources</h2>
+            <p class="section-subtitle">Browse our full collection of tools, guides, and practice materials.</p>
+        </div>
+        <div class="resources-list">
+            <!-- Item 1 -->
+            <div class="resource-item reveal">
+                <div class="resource-item-header">
+                    <div class="resource-icon" style="background:var(--blue-light);">
+                        <span class="material-symbols-outlined" style="color:var(--blue);">format_list_numbered</span>
+                    </div>
+                    <span class="badge badge-blue">Grammar</span>
+                </div>
+                <h3>Irregular Verbs Table</h3>
+                <p>Complete table of 200+ irregular English verbs with past simple, past participle, and audio pronunciation.</p>
+                <div class="resource-meta">
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">download</span>
+                        PDF Download
+                    </div>
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">visibility</span>
+                        12.4K views
+                    </div>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="resource-item reveal">
+                <div class="resource-item-header">
+                    <div class="resource-icon" style="background:#f3e8fd;">
+                        <span class="material-symbols-outlined" style="color:var(--violet);">translate</span>
+                    </div>
+                    <span class="badge badge-violet">Vocabulary</span>
+                </div>
+                <h3>Business English 500</h3>
+                <p>The 500 most essential words for professional communication — meetings, emails, presentations, and negotiations.</p>
+                <div class="resource-meta">
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">style</span>
+                        Flashcards
+                    </div>
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">visibility</span>
+                        8.7K views
+                    </div>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="resource-item reveal">
+                <div class="resource-item-header">
+                    <div class="resource-icon" style="background:#e8f5e9;">
+                        <span class="material-symbols-outlined" style="color:#2e7d32;">mic</span>
+                    </div>
+                    <span class="badge badge-green">Speaking</span>
+                </div>
+                <h3>Pronunciation Drills</h3>
+                <p>Interactive exercises targeting the 15 most difficult English sounds for non-native speakers.</p>
+                <div class="resource-meta">
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">headphones</span>
+                        Audio + Practice
+                    </div>
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">visibility</span>
+                        6.2K views
+                    </div>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="resource-item reveal">
+                <div class="resource-item-header">
+                    <div class="resource-icon" style="background:#fff8e1;">
+                        <span class="material-symbols-outlined" style="color:#f57f17;">description</span>
+                    </div>
+                    <span class="badge badge-amber">Writing</span>
+                </div>
+                <h3>Essay Structure Templates</h3>
+                <p>Downloadable outlines for IELTS, TOEFL, and academic writing — with example essays and scoring rubrics.</p>
+                <div class="resource-meta">
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">download</span>
+                        PDF Download
+                    </div>
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">visibility</span>
+                        9.1K views
+                    </div>
+                </div>
+            </div>
+            <!-- Item 5 -->
+            <div class="resource-item reveal">
+                <div class="resource-item-header">
+                    <div class="resource-icon" style="background:var(--blue-light);">
+                        <span class="material-symbols-outlined" style="color:var(--blue);">quiz</span>
+                    </div>
+                    <span class="badge badge-blue">Grammar</span>
+                </div>
+                <h3>Prepositions Cheat Sheet</h3>
+                <p>Visual guide to in, on, at, by, and 30+ other prepositions with real-world usage examples.</p>
+                <div class="resource-meta">
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">image</span>
+                        Infographic
+                    </div>
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">visibility</span>
+                        15.3K views
+                    </div>
+                </div>
+            </div>
+            <!-- Item 6 -->
+            <div class="resource-item reveal">
+                <div class="resource-item-header">
+                    <div class="resource-icon" style="background:#f3e8fd;">
+                        <span class="material-symbols-outlined" style="color:var(--violet);">smart_toy</span>
+                    </div>
+                    <span class="badge badge-violet">AI Tool</span>
+                </div>
+                <h3>Sentence Analyzer</h3>
+                <p>Paste any English sentence and get an instant breakdown of grammar, tense, voice, and clause structure.</p>
+                <div class="resource-meta">
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">bolt</span>
+                        Interactive Tool
+                    </div>
+                    <div class="resource-meta-item">
+                        <span class="material-symbols-outlined">visibility</span>
+                        11.8K views
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ QUICK TOOLS ═══ -->
+<section class="section" style="background:var(--white);">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-label">Quick Tools</div>
+            <h2 class="section-title">Practice instantly</h2>
+            <p class="section-subtitle">Jump right in with our interactive learning tools.</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-card reveal">
+                <div class="tool-icon" style="background:var(--blue-light);">
+                    <span class="material-symbols-outlined" style="color:var(--blue);">spellcheck</span>
+                </div>
+                <div>
+                    <h3>Grammar Checker</h3>
+                    <p>Paste your writing and get instant corrections with explanations for every grammar rule applied.</p>
+                    <span class="badge badge-blue">Free Tool</span>
+                </div>
+            </div>
+            <div class="tool-card reveal">
+                <div class="tool-icon" style="background:#e8f5e9;">
+                    <span class="material-symbols-outlined" style="color:#2e7d32;">record_voice_over</span>
+                </div>
+                <div>
+                    <h3>Pronunciation Lab</h3>
+                    <p>Record yourself speaking and receive AI-powered feedback on your accent, rhythm, and intonation.</p>
+                    <span class="badge badge-green">AI-Powered</span>
+                </div>
+            </div>
+            <div class="tool-card reveal">
+                <div class="tool-icon" style="background:#f3e8fd;">
+                    <span class="material-symbols-outlined" style="color:var(--violet);">style</span>
+                </div>
+                <div>
+                    <h3>Flashcard Studio</h3>
+                    <p>Create custom vocabulary decks or study from our pre-built sets with spaced repetition technology.</p>
+                    <span class="badge badge-violet">3K+ Words</span>
+                </div>
+            </div>
+            <div class="tool-card reveal">
+                <div class="tool-icon" style="background:#fff8e1;">
+                    <span class="material-symbols-outlined" style="color:#f57f17;">quiz</span>
+                </div>
+                <div>
+                    <h3>Level Test</h3>
+                    <p>Take a quick 15-minute placement test to accurately determine your CEFR level — A1 through C2.</p>
+                    <span class="badge badge-amber">15 min</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section resources-cta">
+    <div class="section-inner" style="text-align:center;">
+        <h2>Ready to put these<br/>resources to work?</h2>
+        <p>Start your personalized learning path today and make real, measurable progress.</p>
+        <a class="btn-primary" href="onboarding.html" style="background:var(--white);color:var(--blue);">
+            Begin Your Journey
+            <span class="material-symbols-outlined" style="font-size:20px;">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer" id="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-name">Learn English</div>
+                <p class="footer-brand-desc">Redefining how the world learns English — through beautiful, intuitive digital experiences.</p>
+            </div>
+            <div>
+                <div class="footer-col-title">Curriculum</div>
+                <ul class="footer-links">
+                    <li><a href="courses.html">Course Library</a></li>
+                    <li><a href="resources.html">Grammar Guide</a></li>
+                    <li><a href="resources.html">Vocabulary Builder</a></li>
+                    <li><a href="resources.html">Study Plans</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Teachers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Connect</div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Website"><span class="material-symbols-outlined">public</span></a>
+                    <a href="#" aria-label="Email"><span class="material-symbols-outlined">alternate_email</span></a>
+                    <a href="#" aria-label="Share"><span class="material-symbols-outlined">share</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span class="footer-year"></span> Learn English. All rights reserved.</span>
+            <span>Privacy · Terms · Accessibility</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ MOBILE BOTTOM NAV ═══ -->
+<nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html">
+        <span class="material-symbols-outlined">school</span>
+        <span>Learn</span>
+    </a>
+    <a href="learn-ai.html">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <span>AI Tutor</span>
+    </a>
+    <a href="test.html">
+        <span class="material-symbols-outlined">quiz</span>
+        <span>Tests</span>
+    </a>
+    <a href="dashboard.html">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Progress</span>
+    </a>
+</nav>
+
+<script>
+    // Dynamic copyright year
+    document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+
+    // Scroll reveal with fixed stagger
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el, i) => el.dataset.delay = (i % 5) * 80);
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = parseInt(entry.target.dataset.delay) || 0;
+                setTimeout(() => entry.target.classList.add('visible'), delay);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+
+    // Nav scroll effect (passive, throttled)
+    const nav = document.getElementById('main-nav');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                nav.style.borderBottomColor = window.scrollY > 10 ? 'rgba(0,0,0,0.08)' : 'rgba(0,0,0,0.05)';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Search filter (simple client-side)
+    document.getElementById('resource-search').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        document.querySelectorAll('.resource-item').forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(query) || !query ? '' : 'none';
+        });
+    });
+</script>
+
+</body>
+</html>

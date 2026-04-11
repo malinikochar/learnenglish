@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Learn English | Master English — The Smart Way</title>
+    <meta name="description" content="Master English from Beginner to Advanced with AI-powered lessons, real-world practice, and personalized learning paths."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           INDEX PAGE — SPECIFIC STYLES ONLY
+           Shared styles are in styles.css
+        ═══════════════════════════════════════════════════════════════ */
+
+        /* ═══ HERO SECTION ═══ */
+        .hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1400px;
+            height: 1400px;
+            background: radial-gradient(ellipse at center, rgba(0,113,227,0.06) 0%, rgba(191,90,242,0.04) 30%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: 6px 18px 6px 8px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 7vw, 96px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            color: var(--black);
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--gray-400);
+            max-width: 620px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 80px;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        /* Hero Image */
+        .hero-image-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-image-wrap img {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Floating cards on hero */
+        .hero-float-card {
+            position: absolute;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: var(--radius-md);
+            padding: 16px 24px;
+            box-shadow: var(--shadow-lg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-float-card.card-left {
+            left: -40px;
+            top: 30%;
+            animation-delay: 0s;
+        }
+
+        .hero-float-card.card-right {
+            right: -40px;
+            top: 20%;
+            animation-delay: 2s;
+        }
+
+        .hero-float-card.card-bottom {
+            bottom: -20px;
+            right: 10%;
+            animation-delay: 4s;
+        }
+
+        .float-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .float-card-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .float-card-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: -0.02em;
+        }
+
+        /* ═══ STATS BAR ═══ */
+        .stats-bar {
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 40px 24px;
+        }
+
+        .stats-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-item .stat-label {
+            font-size: 14px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        /* ═══ LEVELS (Choose Your Path) ═══ */
+        .levels-section {
+            background: var(--gray-100);
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .level-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 48px 36px;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gray-200);
+        }
+
+        .level-card.featured {
+            border: 2px solid var(--blue);
+            box-shadow: var(--shadow-md);
+        }
+
+        .level-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-text);
+        }
+
+        .level-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--blue);
+            color: var(--white);
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .level-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            font-size: 28px;
+        }
+
+        .level-icon.basic { background: #e8f5e9; color: #2e7d32; }
+        .level-icon.intermediate { background: var(--blue-light); color: var(--blue); }
+        .level-icon.advanced { background: #f3e8fd; color: var(--violet); }
+
+        .level-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .level-desc {
+            font-size: 15px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .level-features {
+            list-style: none;
+            margin-bottom: 36px;
+            flex-grow: 1;
+        }
+
+        .level-features li {
+            padding: 10px 0;
+            font-size: 15px;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .level-features li:last-child { border: none; }
+
+        .level-features .check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .level-features .check.green { background: #e8f5e9; color: #2e7d32; }
+        .level-features .check.blue { background: var(--blue-light); color: var(--blue); }
+        .level-features .check.purple { background: #f3e8fd; color: var(--violet); }
+
+        .level-features .check .material-symbols-outlined { font-size: 14px; }
+
+        .level-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: var(--radius-full);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            letter-spacing: -0.01em;
+        }
+
+        .level-btn.outline {
+            background: var(--gray-100);
+            color: var(--black);
+        }
+
+        .level-btn.outline:hover {
+            background: var(--gray-200);
+        }
+
+        .level-btn.filled {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .level-btn.filled:hover {
+            background: var(--blue-hover);
+            box-shadow: 0 4px 20px rgba(0,113,227,0.3);
+        }
+
+        /* ═══ FEATURES BENTO GRID ═══ */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            grid-auto-rows: minmax(300px, auto);
+        }
+
+        .bento-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition-slow);
+        }
+
+        .bento-card:hover {
+            transform: scale(1.01);
+        }
+
+        .bento-card.span-8 { grid-column: span 8; }
+        .bento-card.span-4 { grid-column: span 4; }
+        .bento-card.span-6 { grid-column: span 6; }
+        .bento-card.span-12 { grid-column: span 12; }
+
+        .bento-card-dark {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .bento-card-dark img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: var(--transition-slow);
+        }
+
+        .bento-card-dark:hover img {
+            opacity: 0.5;
+            transform: scale(1.05);
+        }
+
+        .bento-card-dark .bento-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .bento-card-light {
+            background: var(--gray-100);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-card-image {
+            position: relative;
+        }
+
+        .bento-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bento-card-image .bento-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 48px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white);
+        }
+
+        .bento-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+
+        .bento-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .bento-desc {
+            font-size: 16px;
+            opacity: 0.8;
+            line-height: 1.5;
+            max-width: 380px;
+        }
+
+        .bento-icon-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .bento-icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .bento-icon-circle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ═══ TESTIMONIALS ═══ */
+        .testimonials-section {
+            background: var(--black);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(ellipse at center, rgba(0,113,227,0.15) 0%, rgba(191,90,242,0.1) 40%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .testimonials-section .section-header .section-label {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .testimonials-section .section-header .section-title {
+            color: var(--white);
+        }
+
+        .testimonials-section .section-header .section-subtitle {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-stars .material-symbols-outlined {
+            font-size: 18px;
+            color: var(--amber);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .testimonial-text {
+            font-size: 17px;
+            line-height: 1.65;
+            margin-bottom: 32px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.15);
+        }
+
+        .testimonial-name {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .testimonial-role {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 500;
+        }
+
+        /* ═══ CTA SECTION ═══ */
+        .cta-section {
+            text-align: center;
+            background: var(--gray-100);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(ellipse at center, rgba(0,113,227,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .cta-title {
+            font-size: clamp(36px, 4vw, 56px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .cta-subtitle {
+            font-size: 19px;
+            color: var(--gray-400);
+            max-width: 540px;
+            margin: 0 auto 48px;
+            line-height: 1.5;
+        }
+
+        /* ═══ RESPONSIVE (index-specific) ═══ */
+        @media (max-width: 1024px) {
+            .bento-card.span-8, .bento-card.span-4 {
+                grid-column: span 12;
+            }
+            .levels-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+            .hero-float-card { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 120px 20px 60px; }
+            .hero-actions { flex-direction: column; }
+            .bento-card.span-6 { grid-column: span 12; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        }
+        /* ═══ FAQ SECTION ═══ */
+        .faq-section {
+            background: var(--white);
+            padding: 100px 24px;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .faq-item:hover {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-summary {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--black);
+            padding: 24px;
+            cursor: pointer;
+            list-style: none; /* remove default arrow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-summary .material-symbols-outlined {
+            color: var(--gray-400);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item[open] .faq-summary .material-symbols-outlined {
+            transform: rotate(180deg);
+            color: var(--blue);
+        }
+
+        .faq-content {
+            padding: 0 24px 24px 24px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+            <span class="logo-text">Learn English</span>
+        </a>
+        <ul class="nav-links">
+            <li><a class="active" href="index.html" aria-current="page">Learn</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="learn-ai.html">AI Tutor</a></li>
+            <li><a href="test.html">Tests</a></li>
+            <li><a href="dashboard.html">Progress</a></li>
+            <li><a class="nav-cta" href="onboarding.html">Get Started</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+    <div class="hero-badge">
+        <span class="dot"></span>
+        New — AI-powered pronunciation guide now live
+    </div>
+    <h1 class="hero-title">
+        Master English.<br/>
+        <span class="gradient-text">The smart way.</span>
+    </h1>
+    <p class="hero-subtitle">
+        Structured lessons, real-world practice, and intelligent feedback — designed to take you from beginner to fluent, beautifully.
+    </p>
+    <div class="hero-actions">
+        <a class="btn-primary" href="onboarding.html">
+            Start Learning Free
+            <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
+        </a>
+        <a class="btn-secondary" href="courses.html">
+            Explore Courses
+            <span class="material-symbols-outlined">chevron_right</span>
+        </a>
+    </div>
+    <div class="hero-image-wrap">
+        <img src="images/hero_learning.png" alt="Student learning English on a modern device" fetchpriority="high" decoding="async"/>
+        <!-- Floating Cards -->
+        <div class="hero-float-card card-left">
+            <div class="float-card-icon" style="background:#e8f5e9;">
+                <span class="material-symbols-outlined" style="color:#2e7d32;font-size:22px;">trending_up</span>
+            </div>
+            <div class="float-card-label">Streak</div>
+            <div class="float-card-value">47 days</div>
+        </div>
+        <div class="hero-float-card card-right">
+            <div class="float-card-icon" style="background:var(--blue-light);">
+                <span class="material-symbols-outlined" style="color:var(--blue);font-size:22px;">school</span>
+            </div>
+            <div class="float-card-label">Level</div>
+            <div class="float-card-value">A2 → B1</div>
+        </div>
+        <div class="hero-float-card card-bottom">
+            <div class="float-card-icon" style="background:#f3e8fd;">
+                <span class="material-symbols-outlined" style="color:var(--violet);font-size:22px;">mic</span>
+            </div>
+            <div class="float-card-label">Speaking</div>
+            <div class="float-card-value">92% accuracy</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ STATS BAR ═══ -->
+<section class="stats-bar reveal">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <div class="stat-number">2M+</div>
+            <div class="stat-label">Active Learners</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">150+</div>
+            <div class="stat-label">Courses Available</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Success Rate</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">User Rating</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CHOOSE YOUR PATH ═══ -->
+<section class="section levels-section" id="levels">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <div class="section-label">Choose Your Path</div>
+            <h2 class="section-title">Made for every level.</h2>
+            <p class="section-subtitle">Tailored curriculum designed for your current fluency — from first words to full mastery.</p>
+        </div>
+        <div class="levels-grid">
+            <!-- Basic -->
+            <div class="level-card reveal">
+                <div class="level-icon basic">
+                    <span class="material-symbols-outlined">sentiment_satisfied</span>
+                </div>
+                <h3 class="level-name">Basic</h3>
+                <p class="level-desc">Build a strong foundation with essential vocabulary, grammar, and everyday phrases.</p>
+                <ul class="level-features">
+                    <li><span class="check green"><span class="material-symbols-outlined">check</span></span> Common greetings & introductions</li>
+                    <li><span class="check green"><span class="material-symbols-outlined">check</span></span> Daily routine vocabulary</li>
+                    <li><span class="check green"><span class="material-symbols-outlined">check</span></span> Simple sentence construction</li>
+                    <li><span class="check green"><span class="material-symbols-outlined">check</span></span> Basic pronunciation drills</li>
+                </ul>
+                <button class="level-btn outline" onclick="window.location.href='onboarding.html'">Start Basic</button>
+            </div>
+            <!-- Intermediate -->
+            <div class="level-card featured reveal">
+                <span class="level-badge">Most Popular</span>
+                <div class="level-icon intermediate">
+                    <span class="material-symbols-outlined">psychology</span>
+                </div>
+                <h3 class="level-name">Intermediate</h3>
+                <p class="level-desc">Expand your range with complex tenses, professional writing, and debate skills.</p>
+                <ul class="level-features">
+                    <li><span class="check blue"><span class="material-symbols-outlined">check</span></span> Narrative & conditional tenses</li>
+                    <li><span class="check blue"><span class="material-symbols-outlined">check</span></span> Professional email writing</li>
+                    <li><span class="check blue"><span class="material-symbols-outlined">check</span></span> Debating & structured reasoning</li>
+                    <li><span class="check blue"><span class="material-symbols-outlined">check</span></span> Real-time AI conversation</li>
+                </ul>
+                <button class="level-btn filled" onclick="window.location.href='onboarding.html'">Start Intermediate</button>
+            </div>
+            <!-- Advanced -->
+            <div class="level-card reveal">
+                <div class="level-icon advanced">
+                    <span class="material-symbols-outlined">auto_awesome</span>
+                </div>
+                <h3 class="level-name">Advanced</h3>
+                <p class="level-desc">Master nuance, idioms, and specialized academic or business English contexts.</p>
+                <ul class="level-features">
+                    <li><span class="check purple"><span class="material-symbols-outlined">check</span></span> Native-like idiomatic speech</li>
+                    <li><span class="check purple"><span class="material-symbols-outlined">check</span></span> Technical presentations</li>
+                    <li><span class="check purple"><span class="material-symbols-outlined">check</span></span> Literary & cultural analysis</li>
+                    <li><span class="check purple"><span class="material-symbols-outlined">check</span></span> IELTS & TOEFL prep</li>
+                </ul>
+                <button class="level-btn outline" onclick="window.location.href='onboarding.html'">Start Advanced</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FEATURES BENTO GRID ═══ -->
+<section class="section" id="features">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <div class="section-label">Features</div>
+            <h2 class="section-title">Learning. Reinvented.</h2>
+            <p class="section-subtitle">Every tool you need to master English — beautifully designed and intuitively powerful.</p>
+        </div>
+        <div class="bento-grid">
+            <!-- Interactive Lessons (large, dark with image) -->
+            <div class="bento-card span-8 bento-card-dark reveal">
+                <img src="images/team_learning.png" alt="Collaborative learning" loading="lazy" decoding="async"/>
+                <div class="bento-content">
+                    <div class="bento-tag">Core Experience</div>
+                    <div class="bento-title">Interactive Lessons</div>
+                    <div class="bento-desc">Dynamic content that adapts to your pace. Every lesson feels personal, every challenge is calibrated.</div>
+                </div>
+            </div>
+            <!-- Speaking Practice -->
+            <div class="bento-card span-4 bento-card-image reveal">
+                <img src="images/speaking_practice.png" alt="Speaking practice" loading="lazy" decoding="async"/>
+                <div class="bento-overlay">
+                    <div class="bento-tag">AI-Powered</div>
+                    <div class="bento-title">Speaking Practice</div>
+                    <div class="bento-desc">Perfect your accent with real-time AI feedback.</div>
+                </div>
+            </div>
+            <!-- Progress -->
+            <div class="bento-card span-4 bento-card-light reveal">
+                <div>
+                    <div class="bento-tag" style="color:var(--blue);">Analytics</div>
+                    <div class="bento-title" style="color:var(--black);">Progress Tracking</div>
+                    <div class="bento-desc" style="color:var(--gray-400);">Visualize growth with detailed weekly reports, skill heatmaps, and milestone celebrations.</div>
+                </div>
+                <div style="margin-top:20px;">
+                    <img src="images/progress_dashboard.png" alt="Progress dashboard" loading="lazy" decoding="async" style="width:100%;border-radius:var(--radius-md);box-shadow:var(--shadow-md);"/>
+                </div>
+            </div>
+            <!-- Real-world Context -->
+            <div class="bento-card span-8 bento-card-light reveal">
+                <div>
+                    <div class="bento-tag" style="color:var(--violet);">Curated Content</div>
+                    <div class="bento-title" style="color:var(--black);">Real-world Context</div>
+                    <div class="bento-desc" style="color:var(--gray-400);">Learn English as it's actually spoken — curated from news, podcasts, and cinema from around the world.</div>
+                </div>
+                <div class="bento-icon-row">
+                    <div class="bento-icon-circle">
+                        <span class="material-symbols-outlined">movie</span>
+                    </div>
+                    <div class="bento-icon-circle">
+                        <span class="material-symbols-outlined">newspaper</span>
+                    </div>
+                    <div class="bento-icon-circle">
+                        <span class="material-symbols-outlined">podcasts</span>
+                    </div>
+                    <div class="bento-icon-circle">
+                        <span class="material-symbols-outlined">headphones</span>
+                    </div>
+                    <div class="bento-icon-circle">
+                        <span class="material-symbols-outlined">auto_stories</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FAQ SECTION ═══ -->
+<section class="section faq-section" id="faq">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Common Questions.</h2>
+            <p class="section-subtitle">Everything you need to know about starting your English journey.</p>
+        </div>
+        
+        <div class="faq-grid">
+            <details class="faq-item reveal">
+                <summary class="faq-summary">
+                    How does the AI Tutor work?
+                    <span class="material-symbols-outlined">expand_more</span>
+                </summary>
+                <div class="faq-content">
+                    The AI Tutor is your personal 24/7 English teacher. You can choose different topics (like Business or Travel) and skill levels. It supports both <strong>Text</strong> and <strong>Audio voice notes</strong>, allowing you to seamlessly practice your reading, typing, listening, and speaking skills all in one place.
+                </div>
+            </details>
+            
+            <details class="faq-item reveal">
+                <summary class="faq-summary">
+                    Is this platform suitable for beginners?
+                    <span class="material-symbols-outlined">expand_more</span>
+                </summary>
+                <div class="faq-content">
+                    Absolutely! We support all levels ranging from absolute beginners (A1) to advanced proficiency (C2). The AI dynamically adjusts its vocabulary, grammar complexity, and speaking speed based on the level you select.
+                </div>
+            </details>
+
+            <details class="faq-item reveal">
+                <summary class="faq-summary">
+                    Can I practice my speaking and pronunciation?
+                    <span class="material-symbols-outlined">expand_more</span>
+                </summary>
+                <div class="faq-content">
+                    Yes. By switching to the <strong>Audio Mode</strong> in the AI Tutor, you can use your microphone to speak naturally. The AI will understand your voice and reply back with a native-sounding voice note of its own.
+                </div>
+            </details>
+
+            <details class="faq-item reveal">
+                <summary class="faq-summary">
+                    Is the platform free to use?
+                    <span class="material-symbols-outlined">expand_more</span>
+                </summary>
+                <div class="faq-content">
+                    Yes! Currently, all of our core lesson modules, AI text and audio chatting, dynamic quizzes, and personalized analytics are 100% free to use.
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section testimonials-section" id="testimonials">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <div class="section-label">Testimonials</div>
+            <h2 class="section-title">Loved by learners<br/>worldwide.</h2>
+            <p class="section-subtitle">Don't take our word for it — here's what our community says.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                </div>
+                <p class="testimonial-text">"Learn English transformed how I view language learning. It doesn't feel like a chore anymore — it feels like an experience designed just for me."</p>
+                <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl_XH_fbJwEIhWiij2oy96E2wjnX1Lwkf61EZm3gPZlswiygoRB3stDXYPoLc-gY1bIT-fGyaqtYjafmtMJCVTXrO8H7vtQ5GFJccLV8j0yfpY03XPlGyXQwpg6Eux4KRgwlW1X8l1QJJmyfwbAF6LgGEmyy4jZ2m0xzF9dvOQNdBBgH0hGVVhvhIB-o3izexI9y3PuZlJiLGBVGTJSh5JuYlI3PFxfyBRggA1Ys0IeCZohSRgPtz5Cz_V4ko6aLZs4OPklEmlWXnZ" alt="Elena Rossi" loading="lazy" decoding="async" width="48" height="48"/>
+                    <div>
+                        <div class="testimonial-name">Elena Rossi</div>
+                        <div class="testimonial-role">C1 Proficiency · Milan</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                </div>
+                <p class="testimonial-text">"The pronunciation coach is incredible. I finally feel confident speaking during international meetings. It's like having a native tutor 24/7."</p>
+                <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdmsweVQ6tUbelXVaT8hUzRG1CZRIB_11I9A2NcWr4KhTYFKbYGAphxuYa5k4GURw5ggrgP6O5Xg3zGNGdYbfmwhTKyIEfYTVrteRPUcps0_UnuO7wVg23kJ0pv6YL-Utwgm9nqn6puy5Bd-Be8ZeC0oC40yHFC93wgN3-h48rNpL7Orjp1mC_FsJcubQbQHAJhzbL3nJLiZT9gGR4cMfcyGEtkKcMQdDrLqzoaGNY_D9kN36ggoDpBcTksUBwsQEbDmASC84Zu2c-" alt="Kenji Tanaka" loading="lazy" decoding="async" width="48" height="48"/>
+                    <div>
+                        <div class="testimonial-name">Kenji Tanaka</div>
+                        <div class="testimonial-role">Business Intermediate · Tokyo</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined">star</span>
+                </div>
+                <p class="testimonial-text">"The curated articles make learning so relevant. I'm learning vocabulary that I actually use every single day at work and in life."</p>
+                <div class="testimonial-author">
+                    <img class="testimonial-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABW0RpFAKD9n1yx4HZKj1hjHkNbYQypAQZT02MnFaIVI6D22_oVjhFfptNSpD_kPysHsyTFtKWlfYJapJNsy_oLcNQ90LQnmoZ7_m8GGq9V9rfzaNV8yzSvvP_bp35hwrJbevLIOaAntGiO8Z0T0a0sFMo7AxfCxPqC_zSTlQvhYhC-hxpwZanzYXd-3_aYtXh0xKd9wB_TE_xCiPmAyGdGqM9XanIajg2rtzyBbly9WJuFZDrSz5mYPjlkXxPbIwvU9JJIauLDFAW" alt="Rafael Silva" loading="lazy" decoding="async" width="48" height="48"/>
+                    <div>
+                        <div class="testimonial-name">Rafael Silva</div>
+                        <div class="testimonial-role">Upper Intermediate · São Paulo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA SECTION ═══ -->
+<section class="section cta-section" id="cta">
+    <div class="section-inner reveal" style="position:relative;">
+        <div class="section-label">Ready to begin?</div>
+        <h2 class="cta-title">Start learning English<br/><span class="gradient-text">today. For free.</span></h2>
+        <p class="cta-subtitle">Join millions of learners around the globe. No credit card required. Just you and the language.</p>
+        <div class="hero-actions">
+            <a class="btn-primary" href="onboarding.html">
+                Get Started Free
+                <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
+            </a>
+            <a class="btn-secondary" href="courses.html">
+                Browse Courses
+                <span class="material-symbols-outlined">chevron_right</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer" id="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-name">Learn English</div>
+                <p class="footer-brand-desc">Redefining how the world learns English — through beautiful, intuitive digital experiences.</p>
+            </div>
+            <div>
+                <div class="footer-col-title">Curriculum</div>
+                <ul class="footer-links">
+                    <li><a href="courses.html">Course Library</a></li>
+                    <li><a href="resources.html">Grammar Guide</a></li>
+                    <li><a href="resources.html">Vocabulary Builder</a></li>
+                    <li><a href="resources.html">Study Plans</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Teachers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-title">Connect</div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Website"><span class="material-symbols-outlined">public</span></a>
+                    <a href="#" aria-label="Email"><span class="material-symbols-outlined">alternate_email</span></a>
+                    <a href="#" aria-label="Share"><span class="material-symbols-outlined">share</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span id="footer-year"></span> Learn English. All rights reserved.</span>
+            <span>Privacy · Terms · Accessibility</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ MOBILE BOTTOM NAV ═══ -->
+<nav class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a class="active" href="index.html" aria-current="page">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">school</span>
+        <span>Learn</span>
+    </a>
+    <a href="learn-ai.html">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <span>AI Tutor</span>
+    </a>
+    <a href="test.html">
+        <span class="material-symbols-outlined">quiz</span>
+        <span>Tests</span>
+    </a>
+    <a href="dashboard.html">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Progress</span>
+    </a>
+</nav>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+    // Dynamic copyright year
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // IntersectionObserver for scroll reveals (fixed stagger)
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el, i) => {
+        el.dataset.delay = (i % 4) * 100;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = parseInt(entry.target.dataset.delay) || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, delay);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -60px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Nav scroll effect (passive, throttled)
+    const nav = document.getElementById('main-nav');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                nav.style.borderBottomColor = window.scrollY > 10 ? 'rgba(0,0,0,0.08)' : 'rgba(0,0,0,0.05)';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Counter animation for stats
+    function animateCounter(el, target, suffix = '') {
+        let current = 0;
+        const increment = target / 40;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            el.textContent = Math.floor(current).toLocaleString() + suffix;
+        }, 30);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number');
+                statNumbers.forEach(el => {
+                    const text = el.textContent;
+                    if (text.includes('M+')) {
+                        animateCounter(el, 2, 'M+');
+                    } else if (text.includes('+')) {
+                        animateCounter(el, 150, '+');
+                    } else if (text.includes('%')) {
+                        animateCounter(el, 98, '%');
+                    } else if (text.includes('★')) {
+                        el.textContent = '4.9★';
+                    }
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const statsBar = document.querySelector('.stats-bar');
+    if (statsBar) statsObserver.observe(statsBar);
+</script>
+
+</body>
+</html>
